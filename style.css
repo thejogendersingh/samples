@@ -62,7 +62,7 @@ body {
 }
 
 /* ==========================================================================
-   Top Sticky Navigation Bar (Isolated Clean Header)
+   Top Sticky Navigation Bar (Clean Minimal Header)
    ========================================================================== */
 .top-nav {
   position: sticky;
@@ -136,7 +136,7 @@ body {
    Standalone Search Section (Completely Separated from Navbar)
    ========================================================================== */
 .search-section {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .search-input-box {
@@ -203,42 +203,11 @@ body {
 }
 
 /* ==========================================================================
-   Categories in Distinct Separate Lines
+   Mixed Category Chips (Free Flowing, No Enclosing Box Container)
    ========================================================================== */
-.categories-filter-section {
-  background: #ffffff;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 14px 12px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-}
-
-.filter-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.filter-row-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2px;
-}
-
-.filter-row-label {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.category-scroll-wrapper,
-.style-filter-wrapper {
+.category-scroll-wrapper {
   overflow: hidden;
-  margin: 0 -4px;
+  margin: 0 -4px 16px;
   padding: 0 4px;
 }
 
@@ -248,18 +217,17 @@ body {
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
 }
 
-.category-scroll::-webkit-scrollbar,
-.style-filter-scroll::-webkit-scrollbar {
+.category-scroll::-webkit-scrollbar {
   display: none;
 }
 
-/* Larger, Touch-Friendly Category Button */
+/* Touch-Friendly Category Button */
 .cat-chip {
   flex-shrink: 0;
-  background: var(--bg-subtle);
+  background: #ffffff;
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   font-size: 0.82rem;
@@ -273,6 +241,7 @@ body {
   align-items: center;
   gap: 7px;
   font-family: var(--font-main);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
 .chip-svg {
@@ -287,43 +256,6 @@ body {
   color: #ffffff;
   border-color: var(--accent-black);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
-}
-
-/* Line 2: Style Filter Scroll */
-.style-filter-scroll {
-  display: flex;
-  gap: 7px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: 2px;
-}
-
-.style-chip {
-  flex-shrink: 0;
-  background: #ffffff;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  font-size: 0.76rem;
-  font-weight: 600;
-  padding: 6px 14px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: var(--transition);
-  font-family: var(--font-main);
-}
-
-.style-chip:hover {
-  color: var(--text-main);
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-.style-chip.active {
-  background: #25252e;
-  color: #ffffff;
-  border-color: #25252e;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* ==========================================================================
@@ -422,7 +354,7 @@ body {
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
-  width: 230px;
+  width: 210px;
   background: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -554,7 +486,7 @@ body {
 }
 
 /* ==========================================================================
-   Sample Card Design (Photography + Play Preview + Price Tag)
+   Sample Card Design (Photography + Play Preview + Code Badge)
    ========================================================================== */
 .sample-card {
   background: #ffffff;
@@ -604,47 +536,49 @@ body {
   transform: scale(1.04);
 }
 
-/* Style Badge Pill on Top Left */
+/* ==========================================================================
+   Style Badges: WHITE Color For Traditional, Modern, Cinematic & ROYAL Color
+   ========================================================================== */
 .style-badge {
   position: absolute;
   top: 8px;
   left: 8px;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   padding: 3px 8px;
   border-radius: var(--radius-full);
   text-transform: uppercase;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  /* Pure Crisp White Background for Traditional, Modern, Cinematic */
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--accent-black);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
 
+/* Royal Badge: Luxury Royal Gold */
 .style-badge.royal {
-  background: rgba(194, 155, 78, 0.92);
+  background: #c29b4e;
   border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;
+  box-shadow: 0 2px 8px rgba(194, 155, 78, 0.4);
 }
 
-.style-badge.modern {
-  background: rgba(30, 41, 59, 0.88);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
+/* Traditional, Modern, Cinematic explicitly styled in clean white box */
+.style-badge.traditional,
+.style-badge.modern,
 .style-badge.cinematic {
-  background: rgba(124, 58, 237, 0.88);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--accent-black);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.style-badge.traditional {
-  background: rgba(180, 83, 9, 0.88);
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
-/* Template Code Badge on Top Right (e.g. #001, #002) */
+/* ==========================================================================
+   Template Code Badge: BLACK Color (#001, #002...)
+   ========================================================================== */
 .template-code-badge {
   position: absolute;
   top: 8px;
@@ -656,8 +590,8 @@ body {
   border-radius: var(--radius-full);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  background: #111115;
   color: #ffffff;
-  background: rgba(17, 17, 21, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.28);
   z-index: 2;
   font-family: var(--font-main);

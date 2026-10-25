@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <!-- Clean Top Sticky Navigation Bar (Isolated from Search & Categories) -->
+  <!-- Clean Top Sticky Navigation Bar -->
   <header class="top-nav" id="topNav">
     <div class="nav-container">
       <div class="logo">SAMPLES</div>
@@ -43,73 +43,63 @@
       </div>
     </section>
 
-    <!-- Categories in Separate Distinct Lines -->
-    <section class="categories-filter-section">
-      
-      <!-- Line 1: Community Categories (Hindu, Sikh, South Indian, Islamic, Christian) -->
-      <div class="filter-row">
-        <div class="filter-row-header">
-          <span class="filter-row-label">Community / Tradition</span>
-        </div>
-        <div class="category-scroll-wrapper">
-          <nav class="category-scroll" id="categoryScroll">
-            <button class="cat-chip active" data-category="all">
-              <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
-              All
-            </button>
-            <button class="cat-chip" data-category="hindu">
-              <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-              Hindu
-            </button>
-            <button class="cat-chip" data-category="sikh">
-              <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              Sikh
-            </button>
-            <button class="cat-chip" data-category="south-indian">
-              <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-              South Indian
-            </button>
-            <button class="cat-chip" data-category="islamic">
-              <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
-              Islamic
-            </button>
-            <button class="cat-chip" data-category="christian">
-              <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M7 7h10"></path></svg>
-              Christian
-            </button>
-          </nav>
-        </div>
-      </div>
-
-      <!-- Line 2: Aesthetic Styles (Modern, Royal, Cinematic, Traditional) -->
-      <div class="filter-row" style="margin-top: 12px;">
-        <div class="filter-row-header">
-          <span class="filter-row-label">Aesthetic Style</span>
-        </div>
-        <div class="style-filter-wrapper">
-          <nav class="style-filter-scroll" id="styleScroll">
-            <button class="style-chip active" data-style="all">All Styles</button>
-            <button class="style-chip" data-style="modern">Modern</button>
-            <button class="style-chip" data-style="royal">Royal</button>
-            <button class="style-chip" data-style="cinematic">Cinematic</button>
-            <button class="style-chip" data-style="traditional">Traditional</button>
-          </nav>
-        </div>
-      </div>
-
+    <!-- Mixed Categories & Styles in One Smooth Natural Row (No Outer Box, Free Layout) -->
+    <section class="category-scroll-wrapper">
+      <nav class="category-scroll" id="categoryScroll">
+        <button class="cat-chip active" data-filter="all">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+          All
+        </button>
+        <button class="cat-chip" data-filter="hindu">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+          Hindu
+        </button>
+        <button class="cat-chip" data-filter="sikh">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Sikh
+        </button>
+        <button class="cat-chip" data-filter="south-indian">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          South Indian
+        </button>
+        <button class="cat-chip" data-filter="islamic">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          Islamic
+        </button>
+        <button class="cat-chip" data-filter="christian">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M7 7h10"></path></svg>
+          Christian
+        </button>
+        <button class="cat-chip" data-filter="royal">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
+          Royal
+        </button>
+        <button class="cat-chip" data-filter="modern">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Modern
+        </button>
+        <button class="cat-chip" data-filter="cinematic">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          Cinematic
+        </button>
+        <button class="cat-chip" data-filter="traditional">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Traditional
+        </button>
+      </nav>
     </section>
 
-    <!-- Catalog Meta Bar with Right-Side Filter & Sort -->
+    <!-- Catalog Meta Bar with Right-Side Sort Dropdown -->
     <div class="catalog-meta">
       <div class="meta-left">
         <span class="active-style-label" id="activeStyleLabel">All Invitations</span>
         <span class="active-style-count" id="activeCount">20 Designs</span>
       </div>
 
-      <!-- Right-Side Interactive Sort & Filter Dropdown -->
+      <!-- Right-Side Interactive Sort Dropdown -->
       <div class="meta-right">
         <div class="sort-filter-wrapper">
-          <button type="button" class="sort-filter-btn" id="sortFilterBtn" aria-expanded="false" aria-haspopup="listbox" title="Sort & Filter by Popularity, Code, Name">
+          <button type="button" class="sort-filter-btn" id="sortFilterBtn" aria-expanded="false" aria-haspopup="listbox" title="Sort Invitations">
             <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M6 12h12M10 18h4"></path></svg>
             <span id="sortLabel">Recommended</span>
             <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -589,27 +579,27 @@
 
   <!-- Bottom Mobile Navigation Bar (Quick Community Jump) -->
   <nav class="bottom-mobile-nav" id="bottomNav">
-    <button class="nav-tab active" data-category="all">
+    <button class="nav-tab active" data-filter="all">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
       <span>All</span>
     </button>
-    <button class="nav-tab" data-category="hindu">
+    <button class="nav-tab" data-filter="hindu">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
       <span>Hindu</span>
     </button>
-    <button class="nav-tab" data-category="sikh">
+    <button class="nav-tab" data-filter="sikh">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
       <span>Sikh</span>
     </button>
-    <button class="nav-tab" data-category="south-indian">
+    <button class="nav-tab" data-filter="south-indian">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
       <span>South</span>
     </button>
-    <button class="nav-tab" data-category="islamic">
+    <button class="nav-tab" data-filter="islamic">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
       <span>Islamic</span>
     </button>
-    <button class="nav-tab" data-category="christian">
+    <button class="nav-tab" data-filter="christian">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M7 7h10"></path></svg>
       <span>Christian</span>
     </button>

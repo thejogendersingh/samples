@@ -1,5 +1,5 @@
 // ==========================================================================
-// SAMPLES App Logic: Modal Preview, Search, Multi-Line Category & Code/Sort
+// SAMPLES App Logic: Modal Preview, Search, Mixed Categories & Sorting
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,28 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sampleCards = Array.from(document.querySelectorAll('.sample-card'));
   const categoryChips = document.querySelectorAll('.cat-chip');
-  const styleChips = document.querySelectorAll('.style-chip');
   const bottomTabs = document.querySelectorAll('.bottom-mobile-nav .nav-tab');
   const activeStyleLabel = document.getElementById('activeStyleLabel');
   const activeCount = document.getElementById('activeCount');
 
-  // Sort & Filter Dropdown Elements
+  // Sort Elements
   const sortFilterBtn = document.getElementById('sortFilterBtn');
   const sortDropdownMenu = document.getElementById('sortDropdownMenu');
   const sortLabel = document.getElementById('sortLabel');
   const sortOptions = document.querySelectorAll('.sort-option');
 
-  let currentCategory = 'all';
-  let currentStyle = 'all';
+  let currentFilter = 'all';
   let currentSort = 'recommended';
 
   // --------------------------------------------------------------------------
-  // Apply Unified Filters & Sorting (Category + Style + Search by Name/Code)
+  // Apply Unified Filters & Sorting (Mixed Categories + Search + Sort)
   // --------------------------------------------------------------------------
   function applyFiltersAndSort() {
     let visibleCount = 0;
     const rawQuery = searchInput.value.trim().toLowerCase();
-    // Allow searching "#001" or "001"
     const query = rawQuery.replace(/^#/, '');
 
     // Toggle clear button icon
@@ -60,16 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const cardName = (card.getAttribute('data-name') || '').toLowerCase();
       const cardTheme = (card.getAttribute('data-theme') || '').toLowerCase();
 
-      const matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
-      const matchesStyle = (currentStyle === 'all' || cardStyle === currentStyle);
+      // Mixed Filter matches either Community or Style!
+      const matchesFilter = (currentFilter === 'all' || 
+                             cardCategory === currentFilter || 
+                             cardStyle === currentFilter);
+
       const matchesSearch = (!query || 
                              cardName.includes(query) || 
                              cardTheme.includes(query) || 
                              cardCategory.includes(query) ||
+                             cardStyle.includes(query) ||
                              cardCode.includes(query) ||
                              (`code ${cardCode}`).includes(query));
 
-      if (matchesCategory && matchesStyle && matchesSearch) {
+      if (matchesFilter && matchesSearch) {
         card.style.display = 'flex';
         visibleCount++;
       } else {
@@ -101,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (currentSort === 'newest') {
         return isNewB - isNewA || orderA - orderB;
       } else {
-        // 'recommended'
         return orderA - orderB;
       }
     });
@@ -126,21 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
       activeStyleLabel.textContent = `Search: "${searchInput.value.trim()}"`;
       activeCount.textContent = `${visibleCount} Found`;
     } else {
-      const catMap = {
+      const labelMap = {
         'all': 'All Invitations',
         'hindu': 'Hindu Collection',
         'sikh': 'Sikh & Punjabi',
         'south-indian': 'South Indian',
         'islamic': 'Islamic Collection',
-        'christian': 'Christian Collection'
+        'christian': 'Christian Collection',
+        'royal': 'Royal Designs',
+        'modern': 'Modern Designs',
+        'cinematic': 'Cinematic Designs',
+        'traditional': 'Traditional Designs'
       };
 
-      let label = catMap[currentCategory] || 'Invitations';
-      if (currentStyle !== 'all') {
-        label += ` • ${currentStyle.charAt(0).toUpperCase() + currentStyle.slice(1)}`;
-      }
-
-      activeStyleLabel.textContent = label;
+      activeStyleLabel.textContent = labelMap[currentFilter] || `${currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1)} Collection`;
       activeCount.textContent = `${visibleCount} Designs`;
     }
   }
@@ -160,27 +159,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reset Empty State Event
   emptyResetBtn.addEventListener('click', () => {
     searchInput.value = '';
-    currentCategory = 'all';
-    currentStyle = 'all';
+    currentFilter = 'all';
     currentSort = 'recommended';
     syncCategoryUI('all');
-    syncStyleUI('all');
     syncSortUI('recommended');
     applyFiltersAndSort();
   });
 
   // --------------------------------------------------------------------------
-  // Community Category Selection (Line 1)
+  // Category Selection (Mixed Row)
   // --------------------------------------------------------------------------
-  function setCategoryFilter(category) {
-    currentCategory = category;
-    syncCategoryUI(category);
+  function setFilter(filterVal) {
+    currentFilter = filterVal;
+    syncCategoryUI(filterVal);
     applyFiltersAndSort();
   }
 
-  function syncCategoryUI(category) {
+  function syncCategoryUI(filterVal) {
     categoryChips.forEach(chip => {
-      if (chip.getAttribute('data-category') === category) {
+      if (chip.getAttribute('data-filter') === filterVal) {
         chip.classList.add('active');
         chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
@@ -189,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     bottomTabs.forEach(tab => {
-      if (tab.getAttribute('data-category') === category) {
+      if (tab.getAttribute('data-filter') === filterVal) {
         tab.classList.add('active');
       } else {
         tab.classList.remove('active');
@@ -199,42 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   categoryChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      const cat = chip.getAttribute('data-category');
-      setCategoryFilter(cat);
+      const val = chip.getAttribute('data-filter');
+      setFilter(val);
     });
   });
 
   bottomTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const cat = tab.getAttribute('data-category');
-      setCategoryFilter(cat);
+      const val = tab.getAttribute('data-filter');
+      setFilter(val);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-
-  // --------------------------------------------------------------------------
-  // Aesthetic Style Selection (Line 2)
-  // --------------------------------------------------------------------------
-  function setStyleFilter(style) {
-    currentStyle = style;
-    syncStyleUI(style);
-    applyFiltersAndSort();
-  }
-
-  function syncStyleUI(style) {
-    styleChips.forEach(chip => {
-      if (chip.getAttribute('data-style') === style) {
-        chip.classList.add('active');
-      } else {
-        chip.classList.remove('active');
-      }
-    });
-  }
-
-  styleChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const style = chip.getAttribute('data-style');
-      setStyleFilter(style);
     });
   });
 
@@ -267,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'recommended': 'Recommended',
       'popular': 'Most Popular',
       'newest': 'Newest Added',
-      'code-asc': 'Code #001-#020',
+      'code-asc': 'Code: 001-020',
       'name-asc': 'Name: A to Z'
     };
 
