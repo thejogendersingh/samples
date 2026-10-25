@@ -1,5 +1,5 @@
 // ==========================================================================
-// SAMPLES App Logic: Modal Preview, Couple Search, Style Filter, Navigation Sync
+// SAMPLES App Logic: Modal Preview, Search, Multi-Line Category & Code/Sort
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,37 +19,57 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyResetBtn = document.getElementById('emptyResetBtn');
   const samplesGrid = document.getElementById('samplesGrid');
 
-  const sampleCards = document.querySelectorAll('.sample-card');
+  const sampleCards = Array.from(document.querySelectorAll('.sample-card'));
   const categoryChips = document.querySelectorAll('.cat-chip');
+  const styleChips = document.querySelectorAll('.style-chip');
   const bottomTabs = document.querySelectorAll('.bottom-mobile-nav .nav-tab');
   const activeStyleLabel = document.getElementById('activeStyleLabel');
   const activeCount = document.getElementById('activeCount');
 
+  // Sort & Filter Dropdown Elements
+  const sortFilterBtn = document.getElementById('sortFilterBtn');
+  const sortDropdownMenu = document.getElementById('sortDropdownMenu');
+  const sortLabel = document.getElementById('sortLabel');
+  const sortOptions = document.querySelectorAll('.sort-option');
+
+  let currentCategory = 'all';
   let currentStyle = 'all';
+  let currentSort = 'recommended';
 
   // --------------------------------------------------------------------------
-  // Apply Unified Filters (Style Category + Couple Name Search)
+  // Apply Unified Filters & Sorting (Category + Style + Search by Name/Code)
   // --------------------------------------------------------------------------
-  function applyFilters() {
+  function applyFiltersAndSort() {
     let visibleCount = 0;
-    const query = searchInput.value.trim().toLowerCase();
+    const rawQuery = searchInput.value.trim().toLowerCase();
+    // Allow searching "#001" or "001"
+    const query = rawQuery.replace(/^#/, '');
 
     // Toggle clear button icon
-    if (query.length > 0) {
+    if (rawQuery.length > 0) {
       searchClearBtn.classList.add('active');
     } else {
       searchClearBtn.classList.remove('active');
     }
 
+    // 1. Filter cards
     sampleCards.forEach(card => {
-      const cardStyle = card.getAttribute('data-style');
+      const cardCategory = card.getAttribute('data-category') || '';
+      const cardStyle = card.getAttribute('data-style') || '';
+      const cardCode = card.getAttribute('data-code') || '';
       const cardName = (card.getAttribute('data-name') || '').toLowerCase();
       const cardTheme = (card.getAttribute('data-theme') || '').toLowerCase();
 
+      const matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
       const matchesStyle = (currentStyle === 'all' || cardStyle === currentStyle);
-      const matchesSearch = (!query || cardName.includes(query) || cardTheme.includes(query));
+      const matchesSearch = (!query || 
+                             cardName.includes(query) || 
+                             cardTheme.includes(query) || 
+                             cardCategory.includes(query) ||
+                             cardCode.includes(query) ||
+                             (`code ${cardCode}`).includes(query));
 
-      if (matchesStyle && matchesSearch) {
+      if (matchesCategory && matchesStyle && matchesSearch) {
         card.style.display = 'flex';
         visibleCount++;
       } else {
@@ -57,12 +77,44 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // 2. Sort cards
+    const visibleCards = sampleCards.filter(card => card.style.display !== 'none');
+    
+    visibleCards.sort((a, b) => {
+      const codeA = parseInt(a.getAttribute('data-code') || '999', 10);
+      const codeB = parseInt(b.getAttribute('data-code') || '999', 10);
+      const orderA = parseInt(a.getAttribute('data-order') || '999', 10);
+      const orderB = parseInt(b.getAttribute('data-order') || '999', 10);
+      const isNewA = a.getAttribute('data-new') === 'true' ? 1 : 0;
+      const isNewB = b.getAttribute('data-new') === 'true' ? 1 : 0;
+      const isPopA = a.getAttribute('data-popular') === 'true' ? 1 : 0;
+      const isPopB = b.getAttribute('data-popular') === 'true' ? 1 : 0;
+      const nameA = a.getAttribute('data-name') || '';
+      const nameB = b.getAttribute('data-name') || '';
+
+      if (currentSort === 'code-asc') {
+        return codeA - codeB;
+      } else if (currentSort === 'name-asc') {
+        return nameA.localeCompare(nameB);
+      } else if (currentSort === 'popular') {
+        return isPopB - isPopA || orderA - orderB;
+      } else if (currentSort === 'newest') {
+        return isNewB - isNewA || orderA - orderB;
+      } else {
+        // 'recommended'
+        return orderA - orderB;
+      }
+    });
+
+    // Re-append in sorted order
+    visibleCards.forEach(card => samplesGrid.appendChild(card));
+
     // Handle Empty State
     if (visibleCount === 0) {
       emptySearchState.style.display = 'block';
-      emptyDesc.textContent = query
+      emptyDesc.textContent = rawQuery
         ? `No invitations found for "${searchInput.value.trim()}".`
-        : 'No invitations available in this style.';
+        : 'No invitations match the selected category.';
       samplesGrid.style.display = 'none';
     } else {
       emptySearchState.style.display = 'none';
@@ -70,52 +122,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update Counter & Active Label
-    if (query) {
+    if (rawQuery) {
       activeStyleLabel.textContent = `Search: "${searchInput.value.trim()}"`;
       activeCount.textContent = `${visibleCount} Found`;
-    } else if (currentStyle === 'all') {
-      activeStyleLabel.textContent = 'All Invitations';
-      activeCount.textContent = `${visibleCount} Designs`;
     } else {
-      activeStyleLabel.textContent = `${currentStyle.charAt(0).toUpperCase() + currentStyle.slice(1)} Collection`;
+      const catMap = {
+        'all': 'All Invitations',
+        'hindu': 'Hindu Collection',
+        'sikh': 'Sikh & Punjabi',
+        'south-indian': 'South Indian',
+        'islamic': 'Islamic Collection',
+        'christian': 'Christian Collection'
+      };
+
+      let label = catMap[currentCategory] || 'Invitations';
+      if (currentStyle !== 'all') {
+        label += ` • ${currentStyle.charAt(0).toUpperCase() + currentStyle.slice(1)}`;
+      }
+
+      activeStyleLabel.textContent = label;
       activeCount.textContent = `${visibleCount} Designs`;
     }
   }
 
   // Live Search Input Event
   searchInput.addEventListener('input', () => {
-    applyFilters();
+    applyFiltersAndSort();
   });
 
   // Clear Search Button Event
   searchClearBtn.addEventListener('click', () => {
     searchInput.value = '';
     searchInput.focus();
-    applyFilters();
+    applyFiltersAndSort();
   });
 
   // Reset Empty State Event
   emptyResetBtn.addEventListener('click', () => {
     searchInput.value = '';
+    currentCategory = 'all';
     currentStyle = 'all';
+    currentSort = 'recommended';
     syncCategoryUI('all');
-    applyFilters();
+    syncStyleUI('all');
+    syncSortUI('recommended');
+    applyFiltersAndSort();
   });
 
   // --------------------------------------------------------------------------
-  // Style Category Selection
+  // Community Category Selection (Line 1)
   // --------------------------------------------------------------------------
-  function setStyleFilter(style) {
-    currentStyle = style;
-    syncCategoryUI(style);
-    applyFilters();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function setCategoryFilter(category) {
+    currentCategory = category;
+    syncCategoryUI(category);
+    applyFiltersAndSort();
   }
 
-  function syncCategoryUI(style) {
-    // Sync Top Chips
+  function syncCategoryUI(category) {
     categoryChips.forEach(chip => {
-      if (chip.getAttribute('data-style') === style) {
+      if (chip.getAttribute('data-category') === category) {
         chip.classList.add('active');
         chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       } else {
@@ -123,9 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Sync Bottom Navigation Tabs
     bottomTabs.forEach(tab => {
-      if (tab.getAttribute('data-style') === style) {
+      if (tab.getAttribute('data-category') === category) {
         tab.classList.add('active');
       } else {
         tab.classList.remove('active');
@@ -133,19 +197,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Top Chips Click
   categoryChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cat = chip.getAttribute('data-category');
+      setCategoryFilter(cat);
+    });
+  });
+
+  bottomTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const cat = tab.getAttribute('data-category');
+      setCategoryFilter(cat);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // Aesthetic Style Selection (Line 2)
+  // --------------------------------------------------------------------------
+  function setStyleFilter(style) {
+    currentStyle = style;
+    syncStyleUI(style);
+    applyFiltersAndSort();
+  }
+
+  function syncStyleUI(style) {
+    styleChips.forEach(chip => {
+      if (chip.getAttribute('data-style') === style) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+  }
+
+  styleChips.forEach(chip => {
     chip.addEventListener('click', () => {
       const style = chip.getAttribute('data-style');
       setStyleFilter(style);
     });
   });
 
-  // Bottom Tabs Click
-  bottomTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const style = tab.getAttribute('data-style');
-      setStyleFilter(style);
+  // --------------------------------------------------------------------------
+  // Right-Side Sort Dropdown Logic
+  // --------------------------------------------------------------------------
+  function toggleSortDropdown(forceState) {
+    const isExpanded = forceState !== undefined ? forceState : sortFilterBtn.getAttribute('aria-expanded') !== 'true';
+    sortFilterBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    if (isExpanded) {
+      sortDropdownMenu.classList.add('active');
+    } else {
+      sortDropdownMenu.classList.remove('active');
+    }
+  }
+
+  sortFilterBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleSortDropdown();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!sortFilterBtn.contains(e.target) && !sortDropdownMenu.contains(e.target)) {
+      toggleSortDropdown(false);
+    }
+  });
+
+  function syncSortUI(sortValue) {
+    const sortTitles = {
+      'recommended': 'Recommended',
+      'popular': 'Most Popular',
+      'newest': 'Newest Added',
+      'code-asc': 'Code #001-#020',
+      'name-asc': 'Name: A to Z'
+    };
+
+    sortLabel.textContent = sortTitles[sortValue] || 'Sort';
+
+    sortOptions.forEach(opt => {
+      if (opt.getAttribute('data-sort') === sortValue) {
+        opt.classList.add('active');
+      } else {
+        opt.classList.remove('active');
+      }
+    });
+  }
+
+  sortOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const sortVal = opt.getAttribute('data-sort');
+      currentSort = sortVal;
+      syncSortUI(sortVal);
+      toggleSortDropdown(false);
+      applyFiltersAndSort();
     });
   });
 
@@ -155,24 +298,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function openPreview(card) {
     const url = card.getAttribute('data-url');
     const name = card.getAttribute('data-name');
+    const code = card.getAttribute('data-code');
 
     if (!url) return;
 
-    modalTitle.textContent = name || 'Wedding Invite';
+    modalTitle.textContent = code ? `${name} (#${code})` : (name || 'Wedding Invite');
     modalExternalLink.href = url;
     fallbackLink.href = url;
 
-    // Show loading spinner
     previewLoader.classList.remove('hidden');
-
-    // Prevent background scrolling
     document.body.style.overflow = 'hidden';
 
-    // Show modal
     previewModal.classList.add('active');
     previewModal.setAttribute('aria-hidden', 'false');
 
-    // Load URL in iframe
     previewIframe.src = url;
 
     const hideLoader = () => {
@@ -183,7 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
     previewIframe.addEventListener('load', hideLoader);
     setTimeout(hideLoader, 3500);
 
-    // History state for mobile hardware back button
     window.history.pushState({ modalOpen: true }, '');
   }
 
