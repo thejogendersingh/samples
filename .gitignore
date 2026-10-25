@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+capture_covers.js
+capture_covers_fast.js
+capture_new.js

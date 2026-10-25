@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SAMPLES | Curated Mobile Wedding Invitations</title>
+  <meta name="description" content="Explore handcrafted interactive mobile wedding invitations. Browse by Traditional, Modern, Cinematic, and Royal styles.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar with subtle bottom shadow -->
+  <header class="top-nav" id="topNav">
+    <div class="nav-container">
+      <div class="logo">SAMPLES</div>
+      <div class="nav-live-pill">
+        <span class="pulse-dot"></span>
+        <span>LIVE DEMOS</span>
+      </div>
+    </div>
+
+    <!-- Full Width Search Option for Couple Names -->
+    <div class="search-bar-wrapper">
+      <div class="search-input-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search couple name (e.g. Sheetal, Rohit, Aarav...)" autocomplete="off" spellcheck="false">
+        <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Clean Horizontal Category Filter Chips (SVG Icons, NO Emojis) -->
+    <div class="category-scroll-wrapper">
+      <nav class="category-scroll" id="categoryScroll">
+        <button class="cat-chip active" data-style="all">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+          All
+        </button>
+        <button class="cat-chip" data-style="traditional">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Traditional
+        </button>
+        <button class="cat-chip" data-style="modern">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Modern
+        </button>
+        <button class="cat-chip" data-style="cinematic">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          Cinematic
+        </button>
+        <button class="cat-chip" data-style="royal">
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
+          Royal
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content: Clean, No Clutter, Direct Grid -->
+  <main class="main-content">
+
+    <!-- Active Filter Counter Header -->
+    <div class="catalog-meta">
+      <span class="active-style-label" id="activeStyleLabel">All Invitations</span>
+      <span class="active-style-count" id="activeCount">16 Designs</span>
+    </div>
+
+    <!-- Empty Search State -->
+    <div class="empty-search-state" id="emptySearchState" style="display: none;">
+      <svg class="empty-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+      <h4 class="empty-title">No couple found</h4>
+      <p class="empty-desc" id="emptyDesc">No invitation matches your search.</p>
+      <button type="button" class="empty-reset-btn" id="emptyResetBtn">View All Invitations</button>
+    </div>
+
+    <!-- 2 Cards Per Row Grid on Mobile -->
+    <div class="samples-grid" id="samplesGrid">
+
+      <!-- 1. Sheetal & Shubham (Royal) -->
+      <article class="sample-card" data-style="royal" data-url="https://sheetal-weds-shubham.vercel.app/" data-name="Sheetal & Shubham" data-theme="Luxury Royal Hindu (Udaipur Theme)">
+        <div class="card-media">
+          <img src="assets/covers/sheetal_shubham.jpg" alt="Sheetal & Shubham Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge royal">Royal</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Sheetal & Shubham">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Sheetal & Shubham</h3>
+          <p class="card-sub">Luxury Royal Hindu (Udaipur Theme)</p>
+        </div>
+      </article>
+
+      <!-- 2. Rohit & Priya (Traditional) -->
+      <article class="sample-card" data-style="traditional" data-url="https://rohit-weds-priya.vercel.app/" data-name="Rohit & Priya" data-theme="Traditional Hindu (Ganesha & Toran)">
+        <div class="card-media">
+          <img src="assets/covers/rohit_priya.jpg" alt="Rohit & Priya Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge traditional">Traditional</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Rohit & Priya">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Rohit & Priya</h3>
+          <p class="card-sub">Traditional Hindu (Ganesha & Toran)</p>
+        </div>
+      </article>
+
+      <!-- 3. Arjun & Kajal (Traditional) -->
+      <article class="sample-card" data-style="traditional" data-url="https://arjun-weds-kajal.vercel.app/" data-name="Arjun & Kajal" data-theme="Traditional Hindu">
+        <div class="card-media">
+          <img src="assets/covers/arjun_kajal.jpg" alt="Arjun & Kajal Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge traditional">Traditional</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Arjun & Kajal">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Arjun & Kajal</h3>
+          <p class="card-sub">Traditional Hindu</p>
+        </div>
+      </article>
+
+      <!-- 4. Aarav & Ananya Beach (Cinematic) -->
+      <article class="sample-card" data-style="cinematic" data-url="https://aarav-weds-ananya.vercel.app/" data-name="Aarav & Ananya" data-theme="Luxury Beach Hindu Wedding">
+        <div class="card-media">
+          <img src="assets/covers/aarav_ananya_beach.jpg" alt="Aarav & Ananya Beach Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge cinematic">Cinematic</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Aarav & Ananya">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Aarav & Ananya (Beach)</h3>
+          <p class="card-sub">Luxury Beach Hindu Wedding</p>
+        </div>
+      </article>
+
+      <!-- 5. Aarav & Anika (Modern) -->
+      <article class="sample-card" data-style="modern" data-url="https://shagun-weds-chakshu.vercel.app/" data-name="Aarav & Anika" data-theme="Modern Hindu Wedding">
+        <div class="card-media">
+          <img src="assets/covers/aarav_anika.jpg" alt="Aarav & Anika Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge modern">Modern</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Aarav & Anika">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Aarav & Anika</h3>
+          <p class="card-sub">Modern Hindu Wedding</p>
+        </div>
+      </article>
+
+      <!-- 6. Sanchita & Dharmendra (Modern) -->
+      <article class="sample-card" data-style="modern" data-url="https://sanchita-weds-dharmendhra.vercel.app/" data-name="Sanchita & Dharmendra" data-theme="Modern Indian Luxury Wedding Experience">
+        <div class="card-media">
+          <img src="assets/covers/sanchita_dharmendra.jpg" alt="Sanchita & Dharmendra Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge modern">Modern</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Sanchita & Dharmendra">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Sanchita & Dharmendra</h3>
+          <p class="card-sub">Modern Indian Luxury Wedding Experience</p>
+        </div>
+      </article>
+
+      <!-- Dr. Khushbu & Palkesh (Traditional) -->
+      <article class="sample-card" data-style="traditional" data-url="https://khusbhu-weds-palkesh.vercel.app/" data-name="Dr. Khushbu & Palkesh" data-theme="Traditional Royal Hindu Wedding">
+        <div class="card-media">
+          <img src="assets/covers/khushbu_palkesh.jpg" alt="Dr. Khushbu & Palkesh Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge traditional">Traditional</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Dr. Khushbu & Palkesh">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Dr. Khushbu & Palkesh</h3>
+          <p class="card-sub">Traditional Royal Hindu Wedding</p>
+        </div>
+      </article>
+
+      <!-- 7. Aarav & Ananya South (Traditional) -->
+      <article class="sample-card" data-style="traditional" data-url="https://aarav-weds-ananya-south-wedding.vercel.app/" data-name="Aarav & Ananya (South)" data-theme="Traditional Temple / Muhurtham">
+        <div class="card-media">
+          <img src="assets/covers/aarav_ananya_south.jpg" alt="Aarav & Ananya South Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge traditional">Traditional</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Aarav & Ananya South">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Aarav & Ananya (South)</h3>
+          <p class="card-sub">Traditional Temple / Muhurtham</p>
+        </div>
+      </article>
+
+      <!-- 8. Karthik & Meenakshi (Traditional) -->
+      <article class="sample-card" data-style="traditional" data-url="https://karthik-weds-meenakshi.netlify.app/" data-name="Karthik & Meenakshi" data-theme="Authentic South Indian">
+        <div class="card-media">
+          <img src="assets/covers/karthik_meenakshi.jpg" alt="Karthik & Meenakshi Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge traditional">Traditional</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Karthik & Meenakshi">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Karthik & Meenakshi</h3>
+          <p class="card-sub">Authentic South Indian</p>
+        </div>
+      </article>
+
+      <!-- 9. Aarav & Diya (Modern) -->
+      <article class="sample-card" data-style="modern" data-url="https://aarav-weds-diya.vercel.app/" data-name="Aarav & Diya" data-theme="Modern South Indian">
+        <div class="card-media">
+          <img src="assets/covers/aarav_diya.jpg" alt="Aarav & Diya Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge modern">Modern</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Aarav & Diya">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Aarav & Diya</h3>
+          <p class="card-sub">Modern South Indian</p>
+        </div>
+      </article>
+
+      <!-- 10. Gurpreet & Jashpreet (Traditional) -->
+      <article class="sample-card" data-style="traditional" data-url="https://gurpreet-weds-jashpreet.netlify.app/" data-name="Gurpreet & Jashpreet" data-theme="Traditional Punjabi (Anand Karaj)">
+        <div class="card-media">
+          <img src="assets/covers/gurpreet_jashpreet.jpg" alt="Gurpreet & Jashpreet Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge traditional">Traditional</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Gurpreet & Jashpreet">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Gurpreet & Jashpreet</h3>
+          <p class="card-sub">Traditional Punjabi (Anand Karaj)</p>
+        </div>
+      </article>
+
+      <!-- 11. Navtinder & Shubham (Cinematic) -->
+      <article class="sample-card" data-style="cinematic" data-url="https://navtinder-weds-shubham.vercel.app/" data-name="Navtinder & Shubham" data-theme="Premium Punjabi & Hindu Fusion">
+        <div class="card-media">
+          <img src="assets/covers/navtinder_shubham.jpg" alt="Navtinder & Shubham Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge cinematic">Cinematic</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Navtinder & Shubham">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Navtinder & Shubham</h3>
+          <p class="card-sub">Premium Punjabi & Hindu Fusion</p>
+        </div>
+      </article>
+
+      <!-- 12. Alex & Jamie (Cinematic) -->
+      <article class="sample-card" data-style="cinematic" data-url="https://alex-weds-jamie.vercel.app/" data-name="Alex & Jamie" data-theme="Luxury Punjabi & Hindu Fusion">
+        <div class="card-media">
+          <img src="assets/covers/alex_jamie.jpg" alt="Alex & Jamie Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge cinematic">Cinematic</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Alex & Jamie">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Alex & Jamie</h3>
+          <p class="card-sub">Luxury Punjabi & Hindu Fusion</p>
+        </div>
+      </article>
+
+      <!-- 13. Sahal & Ayesha (Modern) -->
+      <article class="sample-card" data-style="modern" data-url="https://sahal-weds-ayesha.vercel.app/" data-name="Sahal & Ayesha" data-theme="Modern Islamic Nikah">
+        <div class="card-media">
+          <img src="assets/covers/sahal_ayesha.jpg" alt="Sahal & Ayesha Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge modern">Modern</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Sahal & Ayesha">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Sahal & Ayesha</h3>
+          <p class="card-sub">Modern Islamic Nikah</p>
+        </div>
+      </article>
+
+      <!-- 14. Amira & Yusuf (Royal) -->
+      <article class="sample-card" data-style="royal" data-url="https://amira-weds-yusuf-inv.vercel.app/" data-name="Amira & Yusuf" data-theme="Luxury Islamic Nikah">
+        <div class="card-media">
+          <img src="assets/covers/amira_yusuf.jpg" alt="Amira & Yusuf Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge royal">Royal</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Amira & Yusuf">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Amira & Yusuf</h3>
+          <p class="card-sub">Luxury Islamic Nikah</p>
+        </div>
+      </article>
+
+      <!-- 15. Zohan & Rose (Modern) -->
+      <article class="sample-card" data-style="modern" data-url="https://zohan-weds-rose.vercel.app/" data-name="Zohan & Rose" data-theme="Modern Islamic / Rose Theme">
+        <div class="card-media">
+          <img src="assets/covers/zohan_rose.jpg" alt="Zohan & Rose Intro Preview" loading="lazy" class="card-img">
+          <span class="style-badge modern">Modern</span>
+          <div class="play-action-wrap">
+            <button class="play-pill-btn" aria-label="Play Preview Zohan & Rose">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Preview</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Zohan & Rose</h3>
+          <p class="card-sub">Modern Islamic / Rose Theme</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Clean, Non-Boxed 3-Step Process (No Clunky Boxes) -->
+    <section class="minimal-steps-section">
+      <div class="steps-title-wrap">
+        <span class="steps-kicker">HOW IT WORKS</span>
+        <h2 class="steps-heading">Three Simple Steps</h2>
+      </div>
+
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-text-wrap">
+            <h4 class="step-label">Select Design</h4>
+            <p class="step-detail">Choose your favorite style from our live mobile demos.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-text-wrap">
+            <h4 class="step-label">Share Events</h4>
+            <p class="step-detail">Send dates, venue map, timing & couple photos.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-text-wrap">
+            <h4 class="step-label">Ready in 24h</h4>
+            <p class="step-detail">Receive your custom mobile link to share with guests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Clean Minimal Footer -->
+  <footer class="clean-footer">
+    <div class="footer-brand">SAMPLES</div>
+    <p class="footer-desc">Premium interactive wedding invitations crafted for mobile screens.</p>
+    <div class="footer-copyright">© 2026 SAMPLES. All rights reserved.</div>
+  </footer>
+
+  <!-- Bottom Mobile Navigation Bar (SVG Icons, NO Emojis: All, Traditional, Modern, Cinematic, Royal) -->
+  <nav class="bottom-mobile-nav" id="bottomNav">
+    <button class="nav-tab active" data-style="all">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+      <span>All</span>
+    </button>
+    <button class="nav-tab" data-style="traditional">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <span>Traditional</span>
+    </button>
+    <button class="nav-tab" data-style="modern">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <span>Modern</span>
+    </button>
+    <button class="nav-tab" data-style="cinematic">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+      <span>Cinematic</span>
+    </button>
+    <button class="nav-tab" data-style="royal">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
+      <span>Royal</span>
+    </button>
+  </nav>
+
+  <!-- In-App Fullscreen Mobile Preview Modal with Top Left Back Arrow -->
+  <div class="preview-modal" id="previewModal" aria-hidden="true" role="dialog">
+    <div class="modal-top-bar">
+      <!-- Top Left Back Arrow -->
+      <button class="modal-back-btn" id="modalBackBtn" aria-label="Go back">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+
+      <div class="modal-header-info">
+        <h4 class="modal-title" id="modalTitle">Wedding Sample</h4>
+        <div class="modal-subtitle-wrap">
+          <span class="pulse-dot-sm"></span>
+          <span>Live Interactive Mobile Preview</span>
+        </div>
+      </div>
+
+      <!-- Open in browser icon button -->
+      <a href="#" target="_blank" rel="noopener noreferrer" class="modal-external-link" id="modalExternalLink" title="Open full screen in browser">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Live Preview Viewport -->
+    <div class="modal-viewport">
+      <div class="preview-loader" id="previewLoader">
+        <div class="spinner"></div>
+        <span>Loading Live Mobile Invite...</span>
+      </div>
+
+      <div class="iframe-notice" id="iframeNotice">
+        <span>Previewing live mobile version</span>
+        <a href="#" target="_blank" id="fallbackLink" class="fallback-btn">Open Full Site ↗</a>
+      </div>
+
+      <iframe id="previewIframe" src="about:blank" title="Wedding Live Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
