@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalExternalLink = document.getElementById('modalExternalLink');
   const previewSellBar = document.getElementById('previewSellBar');
   const sellBarCode = document.getElementById('sellBarCode');
-  const previewWhatsappBtn = document.getElementById('previewWhatsappBtn');
+  const previewWhatsappBtn = document.getElementById('startCustomizeFromPreviewBtn') || document.getElementById('previewWhatsappBtn');
 
   // Search & Filtering
   const searchInput = document.getElementById('searchInput');
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyResetBtn = document.getElementById('emptyResetBtn');
   const samplesGrid = document.getElementById('samplesGrid');
   const sampleCards = document.querySelectorAll('.sample-card');
-  const filterPills = document.querySelectorAll('.filter-pill');
+  const catChips = document.querySelectorAll('.cat-chip, .filter-pill');
   const bottomNavTabs = document.querySelectorAll('.bottom-mobile-nav .nav-tab');
   const sortSelect = document.getElementById('sortSelect');
   const activeStyleLabel = document.getElementById('activeStyleLabel');
@@ -192,24 +192,37 @@ Please share how to add my wedding details!`;
   function applyFilters() {
     let visibleCount = 0;
     const query = currentSearchQuery.trim().toLowerCase();
+    const activeFilter = currentCategory.toLowerCase();
 
     sampleCards.forEach(card => {
       const cardCategory = (card.getAttribute('data-category') || '').toLowerCase();
+      const cardStyle = (card.getAttribute('data-style') || '').toLowerCase();
       const cardName = (card.getAttribute('data-name') || '').toLowerCase();
       const cardTheme = (card.getAttribute('data-theme') || '').toLowerCase();
       const cardCode = (card.getAttribute('data-code') || '').toLowerCase();
 
-      const matchesCat = (currentCategory === 'all' || cardCategory === currentCategory);
+      // Check category/style match
+      const matchesCategory = (
+        activeFilter === 'all' || 
+        cardCategory === activeFilter || 
+        cardStyle === activeFilter
+      );
+
+      // Check search match
       const matchesSearch = !query || 
         cardName.includes(query) || 
         cardTheme.includes(query) || 
         cardCode.includes(query) ||
         `#${cardCode}`.includes(query);
 
-      if (matchesCat && matchesSearch) {
+      const isVisible = matchesCategory && matchesSearch;
+
+      if (isVisible) {
+        card.classList.remove('is-hidden');
         card.style.display = '';
         visibleCount++;
       } else {
+        card.classList.add('is-hidden');
         card.style.display = 'none';
       }
     });
@@ -232,45 +245,54 @@ Please share how to add my wedding details!`;
     }
   }
 
-  // Filter Pills (Catalog Header)
-  filterPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      filterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      currentCategory = pill.getAttribute('data-filter') || 'all';
+  function setCategory(catValue) {
+    currentCategory = catValue;
 
-      // Sync Bottom Nav tabs
-      bottomNavTabs.forEach(tab => {
-        tab.classList.toggle('active', tab.getAttribute('data-filter') === currentCategory);
-      });
+    // Sync top category chips
+    catChips.forEach(chip => {
+      const chipFilter = chip.getAttribute('data-filter') || 'all';
+      chip.classList.toggle('active', chipFilter === currentCategory);
+    });
 
-      if (activeStyleLabel) {
-        activeStyleLabel.textContent = currentCategory === 'all' ? 'All Collections' : pill.textContent.trim();
-      }
+    // Sync bottom navigation tabs
+    bottomNavTabs.forEach(tab => {
+      const tabFilter = tab.getAttribute('data-filter') || 'all';
+      tab.classList.toggle('active', tabFilter === currentCategory);
+    });
 
-      applyFilters();
+    if (activeStyleLabel) {
+      const activeBtn = document.querySelector(`.cat-chip[data-filter="${currentCategory}"]`) || 
+                        document.querySelector(`.bottom-mobile-nav .nav-tab[data-filter="${currentCategory}"]`);
+      activeStyleLabel.textContent = currentCategory === 'all' 
+        ? 'All Collections' 
+        : (activeBtn ? activeBtn.textContent.trim() : currentCategory);
+    }
+
+    applyFilters();
+  }
+
+  // Top Category Chips (Horizontal Scroll)
+  catChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = chip.getAttribute('data-filter') || 'all';
+      setCategory(filter);
     });
   });
 
   // Bottom Mobile Nav Tabs
   bottomNavTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      bottomNavTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      currentCategory = tab.getAttribute('data-filter') || 'all';
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = tab.getAttribute('data-filter') || 'all';
+      setCategory(filter);
 
-      // Sync Catalog Filter Pills
-      filterPills.forEach(p => {
-        p.classList.toggle('active', p.getAttribute('data-filter') === currentCategory);
-      });
-
-      if (activeStyleLabel) {
-        activeStyleLabel.textContent = currentCategory === 'all' ? 'All Collections' : tab.querySelector('.nav-label')?.textContent.trim() || currentCategory;
+      // Scroll matching chip into view in the top category bar
+      const matchingChip = document.querySelector(`.cat-chip[data-filter="${filter}"]`);
+      if (matchingChip && matchingChip.scrollIntoView) {
+        matchingChip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
 
-      applyFilters();
-
-      // Smooth scroll to catalog
+      // Smooth scroll up to catalog
       const catalog = document.getElementById('catalogSection');
       if (catalog) {
         catalog.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -925,12 +925,16 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
   overflow: hidden;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   transition: var(--transition);
   position: relative;
   cursor: pointer;
   box-shadow: var(--shadow-card);
+}
+
+.sample-card.is-hidden {
+  display: none !important;
 }
 
 .sample-card:hover {
