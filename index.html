@@ -1,27 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SAMPLES | Curated Mobile Wedding Invitations</title>
-  <meta name="description" content="Explore handcrafted interactive mobile wedding invitations across Hindu, Sikh, South Indian, Islamic, and Christian collections.">
-  
+  <title>INVCRAFTMEDIA | Interactive Mobile Wedding Invitations</title>
+  <meta name="description"
+    content="INVCRAFTMEDIA — Handcrafted interactive mobile wedding invitations across Hindu, Sikh, South Indian, Islamic, and Christian collections with live RSVP tracking.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- Clean Top Sticky Navigation Bar -->
+  <!-- ========================================================================
+       CLEAN MINIMAL STICKY HEADER
+       (No Dashboard Clutter Upfront — Dashboard Unlocked After Login & Payment)
+       ======================================================================== -->
   <header class="top-nav" id="topNav">
     <div class="nav-container">
-      <div class="logo">SAMPLES</div>
-      <div class="nav-live-pill">
-        <span class="pulse-dot"></span>
-        <span>20 LIVE DEMOS</span>
+      <a href="#" class="logo-wrap" id="brandLogoLink" aria-label="InvCraftMedia Home">
+        <div class="brand-logo-circle">
+          <svg class="logo-im-svg" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+            <circle cx="20" cy="20" r="19" fill="#111115" />
+            <text x="19" y="21.5" font-family="'Great Vibes', 'Alex Brush', cursive" font-size="15" fill="#ffffff" text-anchor="middle" dominant-baseline="central">IM</text>
+          </svg>
+        </div>
+        <div class="brand-text-col">
+          <div class="brand-name-row">
+            <span class="brand-name">INVCRAFT</span>
+            <span class="brand-media-pill">MEDIA</span>
+          </div>
+          <span class="brand-tagline">Digital Wedding Invites</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <svg class="menu-icon-bars" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="14" y2="17"></line>
+          </svg>
+          <svg class="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2" stroke-linecap="round" style="display:none;">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Clean Minimal Dropdown Menu -->
+    <div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <nav class="drawer-nav-list">
+        <a href="#catalogSection" class="drawer-menu-item" data-close-drawer>
+          <span>Browse All Invitations</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+        <a href="#testimonialsSection" class="drawer-menu-item" data-close-drawer>
+          <span>Client Reviews</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+        <a href="#faqSection" class="drawer-menu-item" data-close-drawer>
+          <span>FAQs</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </nav>
+
+      <div class="drawer-cta-box">
+        <a href="https://wa.me/918209415303?text=Hello%20InvCraftMedia%2C%20I%20want%20to%20customize%20a%20wedding%20invitation" target="_blank" rel="noopener noreferrer" class="drawer-primary-btn drawer-wa-btn">
+          <span>Chat on WhatsApp</span>
+          <span>→</span>
+        </a>
       </div>
     </div>
   </header>
@@ -29,132 +96,236 @@
   <!-- Main Content Layout -->
   <main class="main-content">
 
-    <!-- Standalone Search Bar Section (Search by Couple Name or Code like 001) -->
+    <!-- ======================================================================
+         1. CLEAN CENTERED HERO SECTION
+         ====================================================================== -->
+    <section class="hero-section">
+      <div class="hero-trust-pill">
+        <span>CURATED MOBILE WEDDING INVITATIONS</span>
+      </div>
+
+      <h1 class="hero-title">
+        Interactive Digital <span class="hero-highlight">Wedding Invitations</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Preview live mobile designs, customize with your wedding details, and receive your shareable invite link with
+        live RSVP tracking.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="#catalogSection" class="btn-primary-hero">
+          <span>View All Templates</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </a>
+        <a href="https://wa.me/918209415303?text=Hello%20InvCraftMedia%2C%20I%20want%20to%20customize%20a%20wedding%20invitation" target="_blank" rel="noopener noreferrer" class="btn-secondary-hero" id="heroWhatsappBtn">
+          <span>Customize on WhatsApp</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="hero-metrics-bar">
+        <div class="metric-item">
+          <strong>20+ Designs</strong>
+          <span>Live Demos</span>
+        </div>
+        <div class="metric-item">
+          <strong>Instant Link</strong>
+          <span>WhatsApp Ready</span>
+        </div>
+        <div class="metric-item">
+          <strong>Live RSVP</strong>
+          <span>Guest Tracker</span>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- ======================================================================
+         3. CATALOG SECTION: SEARCH, CATEGORIES & 20 LIVE TEMPLATES
+         (NO PRICE ON CARDS — PRICE SHOWN ONLY AT PURCHASE)
+         ====================================================================== -->
+    <div id="catalogSection" class="catalog-anchor"></div>
+
     <section class="search-section">
       <div class="search-input-box">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search couple name or code (e.g. Sheetal, Arjun, 001, 012...)" autocomplete="off" spellcheck="false">
+        <input type="text" id="searchInput" class="search-input"
+          placeholder="Search couple name or code (e.g. Sheetal, Arjun, 001, 012...)" autocomplete="off"
+          spellcheck="false">
         <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
       </div>
     </section>
 
-    <!-- Mixed Categories & Styles in One Smooth Natural Row (No Outer Box, Free Layout) -->
     <section class="category-scroll-wrapper">
       <nav class="category-scroll" id="categoryScroll">
         <button class="cat-chip active" data-filter="all">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
           All
         </button>
         <button class="cat-chip" data-filter="hindu">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
           Hindu
         </button>
         <button class="cat-chip" data-filter="sikh">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
           Sikh
         </button>
         <button class="cat-chip" data-filter="south-indian">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
           South Indian
         </button>
         <button class="cat-chip" data-filter="islamic">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
           Islamic
         </button>
         <button class="cat-chip" data-filter="christian">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M7 7h10"></path></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M7 7h10"></path>
+          </svg>
           Christian
         </button>
         <button class="cat-chip" data-filter="royal">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path>
+          </svg>
           Royal
         </button>
         <button class="cat-chip" data-filter="modern">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
           Modern
         </button>
         <button class="cat-chip" data-filter="cinematic">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+            <line x1="7" y1="2" x2="7" y2="22"></line>
+            <line x1="17" y1="2" x2="17" y2="22"></line>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <line x1="2" y1="7" x2="7" y2="7"></line>
+            <line x1="2" y1="17" x2="7" y2="17"></line>
+            <line x1="17" y1="17" x2="22" y2="17"></line>
+            <line x1="17" y1="7" x2="22" y2="7"></line>
+          </svg>
           Cinematic
         </button>
         <button class="cat-chip" data-filter="traditional">
-          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
           Traditional
         </button>
       </nav>
     </section>
 
-    <!-- Catalog Meta Bar with Right-Side Sort Dropdown -->
     <div class="catalog-meta">
       <div class="meta-left">
         <span class="active-style-label" id="activeStyleLabel">All Invitations</span>
         <span class="active-style-count" id="activeCount">20 Designs</span>
       </div>
 
-      <!-- Right-Side Interactive Sort Dropdown -->
       <div class="meta-right">
         <div class="sort-filter-wrapper">
-          <button type="button" class="sort-filter-btn" id="sortFilterBtn" aria-expanded="false" aria-haspopup="listbox" title="Sort Invitations">
-            <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M6 12h12M10 18h4"></path></svg>
+          <button type="button" class="sort-filter-btn" id="sortFilterBtn" aria-expanded="false" aria-haspopup="listbox"
+            title="Sort Invitations">
+            <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M3 6h18M6 12h12M10 18h4"></path>
+            </svg>
             <span id="sortLabel">Recommended</span>
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </button>
 
-          <!-- Dropdown Menu for Sorting & Options -->
           <div class="sort-dropdown-menu" id="sortDropdownMenu">
             <div class="dropdown-header">Sort Invitations</div>
             <button type="button" class="sort-option active" data-sort="recommended">
               <span class="opt-bullet">✓</span>
-              <span>✨ Recommended</span>
+              <span>Recommended</span>
             </button>
             <button type="button" class="sort-option" data-sort="popular">
               <span class="opt-bullet">✓</span>
-              <span>🔥 Most Popular</span>
+              <span>Most Popular</span>
             </button>
             <button type="button" class="sort-option" data-sort="newest">
               <span class="opt-bullet">✓</span>
-              <span>🆕 Newest Added</span>
+              <span>Newest Added</span>
             </button>
             <button type="button" class="sort-option" data-sort="code-asc">
               <span class="opt-bullet">✓</span>
-              <span>🔢 Code: 001 → 020</span>
+              <span>Code: 001 → 020</span>
             </button>
             <button type="button" class="sort-option" data-sort="name-asc">
               <span class="opt-bullet">✓</span>
-              <span>🔤 Name: A to Z</span>
+              <span>Name: A to Z</span>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Empty Search State -->
     <div class="empty-search-state" id="emptySearchState" style="display: none;">
-      <svg class="empty-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+      <svg class="empty-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        <line x1="8" y1="11" x2="14" y2="11"></line>
+      </svg>
       <h4 class="empty-title">No invitations found</h4>
       <p class="empty-desc" id="emptyDesc">No invitation matches your filter.</p>
       <button type="button" class="empty-reset-btn" id="emptyResetBtn">View All Invitations</button>
     </div>
 
-    <!-- 2 Cards Per Row Grid on Mobile -->
+    <!-- 2 Cards Per Row Grid (Clean Cards — No Price Tag Clutter) -->
     <div class="samples-grid" id="samplesGrid">
 
-      <!-- ==================== HINDU COLLECTION ==================== -->
-      
-      <!-- 1. Sheetal & Shubham (Hindu - Royal) [CODE: #001] -->
-      <article class="sample-card" data-category="hindu" data-style="royal" data-code="001" data-popular="true" data-order="1" data-url="https://sheetal-weds-shubham.vercel.app/" data-name="Sheetal & Shubham" data-theme="Luxury Royal Hindu (Udaipur Theme)">
+      <!-- 1. Sheetal & Shubham [CODE: #001] -->
+      <article class="sample-card" data-category="hindu" data-style="royal" data-code="001" data-popular="true"
+        data-order="1" data-url="https://sheetal-weds-shubham.vercel.app/" data-name="Sheetal & Shubham"
+        data-theme="Luxury Royal Hindu (Udaipur Theme)">
         <div class="card-media">
           <img src="assets/covers/sheetal_shubham.jpg" alt="Sheetal & Shubham Preview" loading="lazy" class="card-img">
           <span class="style-badge royal">Royal</span>
           <span class="template-code-badge">#001</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Sheetal & Shubham">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -162,18 +333,28 @@
         <div class="card-info">
           <h3 class="card-title">Sheetal & Shubham</h3>
           <p class="card-sub">Luxury Royal Hindu (Udaipur Theme)</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 2. Rohit & Priya (Hindu - Traditional) [CODE: #002] -->
-      <article class="sample-card" data-category="hindu" data-style="traditional" data-code="002" data-popular="true" data-order="2" data-url="https://rohit-weds-priya.vercel.app/" data-name="Rohit & Priya" data-theme="Traditional Hindu (Ganesha & Toran)">
+      <!-- 2. Rohit & Priya [CODE: #002] -->
+      <article class="sample-card" data-category="hindu" data-style="traditional" data-code="002" data-popular="true"
+        data-order="2" data-url="https://rohit-weds-priya.vercel.app/" data-name="Rohit & Priya"
+        data-theme="Traditional Hindu (Ganesha & Toran)">
         <div class="card-media">
           <img src="assets/covers/rohit_priya.jpg" alt="Rohit & Priya Preview" loading="lazy" class="card-img">
           <span class="style-badge traditional">Traditional</span>
           <span class="template-code-badge">#002</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Rohit & Priya">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -181,18 +362,27 @@
         <div class="card-info">
           <h3 class="card-title">Rohit & Priya</h3>
           <p class="card-sub">Traditional Hindu (Ganesha & Toran)</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 3. Arjun & Kajal (Hindu - Traditional) [CODE: #003] -->
-      <article class="sample-card" data-category="hindu" data-style="traditional" data-code="003" data-order="3" data-url="https://arjun-weds-kajal.vercel.app/" data-name="Arjun & Kajal" data-theme="Traditional Hindu">
+      <!-- 3. Arjun & Kajal [CODE: #003] -->
+      <article class="sample-card" data-category="hindu" data-style="traditional" data-code="003" data-order="3"
+        data-url="https://arjun-weds-kajal.vercel.app/" data-name="Arjun & Kajal" data-theme="Traditional Hindu">
         <div class="card-media">
           <img src="assets/covers/arjun_kajal.jpg" alt="Arjun & Kajal Preview" loading="lazy" class="card-img">
           <span class="style-badge traditional">Traditional</span>
           <span class="template-code-badge">#003</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Arjun & Kajal">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -200,18 +390,28 @@
         <div class="card-info">
           <h3 class="card-title">Arjun & Kajal</h3>
           <p class="card-sub">Traditional Hindu</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 4. Aarav & Ananya (Hindu - Modern) [CODE: #004] -->
-      <article class="sample-card" data-category="hindu" data-style="modern" data-code="004" data-new="true" data-order="4" data-url="https://ananya-weds-aarav.vercel.app/" data-name="Aarav & Ananya" data-theme="Modern Hindu Wedding">
+      <!-- 4. Aarav & Ananya [CODE: #004] -->
+      <article class="sample-card" data-category="hindu" data-style="modern" data-code="004" data-new="true"
+        data-order="4" data-url="https://ananya-weds-aarav.vercel.app/" data-name="Aarav & Ananya"
+        data-theme="Modern Hindu Wedding">
         <div class="card-media">
           <img src="assets/covers/ananya_aarav.jpg" alt="Aarav & Ananya Preview" loading="lazy" class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#004</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Aarav & Ananya">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -219,18 +419,28 @@
         <div class="card-info">
           <h3 class="card-title">Aarav & Ananya</h3>
           <p class="card-sub">Modern Hindu Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 5. Unnati & Nisarg (Hindu - Modern) [CODE: #005] -->
-      <article class="sample-card" data-category="hindu" data-style="modern" data-code="005" data-new="true" data-order="5" data-url="http://unnati-weds-nisarg.vercel.app/" data-name="Unnati & Nisarg" data-theme="Modern Hindu Wedding">
+      <!-- 5. Unnati & Nisarg [CODE: #005] -->
+      <article class="sample-card" data-category="hindu" data-style="modern" data-code="005" data-new="true"
+        data-order="5" data-url="http://unnati-weds-nisarg.vercel.app/" data-name="Unnati & Nisarg"
+        data-theme="Modern Hindu Wedding">
         <div class="card-media">
           <img src="assets/covers/unnati_nisarg.jpg" alt="Unnati & Nisarg Preview" loading="lazy" class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#005</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Unnati & Nisarg">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -238,18 +448,29 @@
         <div class="card-info">
           <h3 class="card-title">Unnati & Nisarg</h3>
           <p class="card-sub">Modern Hindu Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 6. Aarav & Ananya (Beach) (Hindu - Cinematic) [CODE: #006] -->
-      <article class="sample-card" data-category="hindu" data-style="cinematic" data-code="006" data-popular="true" data-order="6" data-url="https://aarav-weds-ananya.vercel.app/" data-name="Aarav & Ananya (Beach)" data-theme="Luxury Beach Hindu Wedding">
+      <!-- 6. Aarav & Ananya (Beach) [CODE: #006] -->
+      <article class="sample-card" data-category="hindu" data-style="cinematic" data-code="006" data-popular="true"
+        data-order="6" data-url="https://aarav-weds-ananya.vercel.app/" data-name="Aarav & Ananya (Beach)"
+        data-theme="Luxury Beach Hindu Wedding">
         <div class="card-media">
-          <img src="assets/covers/aarav_ananya_beach.jpg" alt="Aarav & Ananya Beach Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/aarav_ananya_beach.jpg" alt="Aarav & Ananya Beach Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge cinematic">Cinematic</span>
           <span class="template-code-badge">#006</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Aarav & Ananya Beach">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -257,18 +478,27 @@
         <div class="card-info">
           <h3 class="card-title">Aarav & Ananya (Beach)</h3>
           <p class="card-sub">Luxury Beach Hindu Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 7. Aarav & Anika (Hindu - Modern) [CODE: #007] -->
-      <article class="sample-card" data-category="hindu" data-style="modern" data-code="007" data-order="7" data-url="https://shagun-weds-chakshu.vercel.app/" data-name="Aarav & Anika" data-theme="Modern Hindu Wedding">
+      <!-- 7. Aarav & Anika [CODE: #007] -->
+      <article class="sample-card" data-category="hindu" data-style="modern" data-code="007" data-order="7"
+        data-url="https://shagun-weds-chakshu.vercel.app/" data-name="Aarav & Anika" data-theme="Modern Hindu Wedding">
         <div class="card-media">
           <img src="assets/covers/aarav_anika.jpg" alt="Aarav & Anika Preview" loading="lazy" class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#007</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Aarav & Anika">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -276,18 +506,29 @@
         <div class="card-info">
           <h3 class="card-title">Aarav & Anika</h3>
           <p class="card-sub">Modern Hindu Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 8. Dr. Khushbu & Palkesh (Hindu - Traditional) [CODE: #008] -->
-      <article class="sample-card" data-category="hindu" data-style="traditional" data-code="008" data-order="8" data-url="https://khusbhu-weds-palkesh.vercel.app/" data-name="Dr. Khushbu & Palkesh" data-theme="Traditional Royal Hindu Wedding">
+      <!-- 8. Dr. Khushbu & Palkesh [CODE: #008] -->
+      <article class="sample-card" data-category="hindu" data-style="traditional" data-code="008" data-order="8"
+        data-url="https://khusbhu-weds-palkesh.vercel.app/" data-name="Dr. Khushbu & Palkesh"
+        data-theme="Traditional Royal Hindu Wedding">
         <div class="card-media">
-          <img src="assets/covers/khushbu_palkesh.jpg" alt="Dr. Khushbu & Palkesh Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/khushbu_palkesh.jpg" alt="Dr. Khushbu & Palkesh Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge traditional">Traditional</span>
           <span class="template-code-badge">#008</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Dr. Khushbu & Palkesh">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -295,20 +536,29 @@
         <div class="card-info">
           <h3 class="card-title">Dr. Khushbu & Palkesh</h3>
           <p class="card-sub">Traditional Royal Hindu Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- ==================== SIKH & PUNJABI COLLECTION ==================== -->
-
-      <!-- 9. Sanchita & Dharmendra (Sikh - Modern) [CODE: #009] -->
-      <article class="sample-card" data-category="sikh" data-style="modern" data-code="009" data-popular="true" data-order="9" data-url="https://sanchita-weds-dharmendhra.vercel.app/" data-name="Sanchita & Dharmendra" data-theme="Modern Punjabi & Sikh Wedding Experience">
+      <!-- 9. Sanchita & Dharmendra [CODE: #009] -->
+      <article class="sample-card" data-category="sikh" data-style="modern" data-code="009" data-popular="true"
+        data-order="9" data-url="https://sanchita-weds-dharmendhra.vercel.app/" data-name="Sanchita & Dharmendra"
+        data-theme="Modern Punjabi & Sikh Wedding Experience">
         <div class="card-media">
-          <img src="assets/covers/sanchita_dharmendra.jpg" alt="Sanchita & Dharmendra Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/sanchita_dharmendra.jpg" alt="Sanchita & Dharmendra Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#009</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Sanchita & Dharmendra">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -316,18 +566,29 @@
         <div class="card-info">
           <h3 class="card-title">Sanchita & Dharmendra</h3>
           <p class="card-sub">Modern Punjabi & Sikh Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 10. Gurpreet & Jashpreet (Sikh - Traditional) [CODE: #010] -->
-      <article class="sample-card" data-category="sikh" data-style="traditional" data-code="010" data-order="10" data-url="https://gurpreet-weds-jashpreet.netlify.app/" data-name="Gurpreet & Jashpreet" data-theme="Traditional Punjabi (Anand Karaj)">
+      <!-- 10. Gurpreet & Jashpreet [CODE: #010] -->
+      <article class="sample-card" data-category="sikh" data-style="traditional" data-code="010" data-order="10"
+        data-url="https://gurpreet-weds-jashpreet.netlify.app/" data-name="Gurpreet & Jashpreet"
+        data-theme="Traditional Punjabi (Anand Karaj)">
         <div class="card-media">
-          <img src="assets/covers/gurpreet_jashpreet.jpg" alt="Gurpreet & Jashpreet Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/gurpreet_jashpreet.jpg" alt="Gurpreet & Jashpreet Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge traditional">Traditional</span>
           <span class="template-code-badge">#010</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Gurpreet & Jashpreet">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -335,18 +596,29 @@
         <div class="card-info">
           <h3 class="card-title">Gurpreet & Jashpreet</h3>
           <p class="card-sub">Traditional Punjabi (Anand Karaj)</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 11. Navtinder & Shubham (Sikh - Cinematic) [CODE: #011] -->
-      <article class="sample-card" data-category="sikh" data-style="cinematic" data-code="011" data-order="11" data-url="https://navtinder-weds-shubham.vercel.app/" data-name="Navtinder & Shubham" data-theme="Premium Punjabi & Sikh Fusion">
+      <!-- 11. Navtinder & Shubham [CODE: #011] -->
+      <article class="sample-card" data-category="sikh" data-style="cinematic" data-code="011" data-order="11"
+        data-url="https://navtinder-weds-shubham.vercel.app/" data-name="Navtinder & Shubham"
+        data-theme="Premium Punjabi & Sikh Fusion">
         <div class="card-media">
-          <img src="assets/covers/navtinder_shubham.jpg" alt="Navtinder & Shubham Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/navtinder_shubham.jpg" alt="Navtinder & Shubham Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge cinematic">Cinematic</span>
           <span class="template-code-badge">#011</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Navtinder & Shubham">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -354,18 +626,28 @@
         <div class="card-info">
           <h3 class="card-title">Navtinder & Shubham</h3>
           <p class="card-sub">Premium Punjabi Fusion</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 12. Arjun & Simran (Sikh - Royal) [CODE: #012] -->
-      <article class="sample-card" data-category="sikh" data-style="royal" data-code="012" data-new="true" data-popular="true" data-order="12" data-url="https://arjun-weds-simran.vercel.app/" data-name="Arjun & Simran" data-theme="Grand Royal Punjabi Wedding">
+      <!-- 12. Arjun & Simran [CODE: #012] -->
+      <article class="sample-card" data-category="sikh" data-style="royal" data-code="012" data-new="true"
+        data-popular="true" data-order="12" data-url="https://arjun-weds-simran.vercel.app/" data-name="Arjun & Simran"
+        data-theme="Grand Royal Punjabi Wedding">
         <div class="card-media">
           <img src="assets/covers/arjun_simran.jpg" alt="Arjun & Simran Preview" loading="lazy" class="card-img">
           <span class="style-badge royal">Royal</span>
           <span class="template-code-badge">#012</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Arjun & Simran">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -373,20 +655,29 @@
         <div class="card-info">
           <h3 class="card-title">Arjun & Simran</h3>
           <p class="card-sub">Grand Royal Punjabi Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- ==================== SOUTH INDIAN COLLECTION ==================== -->
-
-      <!-- 13. Aarav & Ananya (South - Traditional) [CODE: #013] -->
-      <article class="sample-card" data-category="south-indian" data-style="traditional" data-code="013" data-order="13" data-url="https://aarav-weds-ananya-south-wedding.vercel.app/" data-name="Aarav & Ananya (South)" data-theme="Traditional Temple / Muhurtham">
+      <!-- 13. Aarav & Ananya (South) [CODE: #013] -->
+      <article class="sample-card" data-category="south-indian" data-style="traditional" data-code="013" data-order="13"
+        data-url="https://aarav-weds-ananya-south-wedding.vercel.app/" data-name="Aarav & Ananya (South)"
+        data-theme="Traditional Temple / Muhurtham">
         <div class="card-media">
-          <img src="assets/covers/aarav_ananya_south.jpg" alt="Aarav & Ananya South Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/aarav_ananya_south.jpg" alt="Aarav & Ananya South Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge traditional">Traditional</span>
           <span class="template-code-badge">#013</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Aarav & Ananya South">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -394,18 +685,29 @@
         <div class="card-info">
           <h3 class="card-title">Aarav & Ananya (South)</h3>
           <p class="card-sub">Traditional Temple / Muhurtham</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 14. Karthik & Meenakshi (South - Traditional) [CODE: #014] -->
-      <article class="sample-card" data-category="south-indian" data-style="traditional" data-code="014" data-popular="true" data-order="14" data-url="https://karthik-weds-meenakshi.netlify.app/" data-name="Karthik & Meenakshi" data-theme="Authentic South Indian">
+      <!-- 14. Karthik & Meenakshi [CODE: #014] -->
+      <article class="sample-card" data-category="south-indian" data-style="traditional" data-code="014"
+        data-popular="true" data-order="14" data-url="https://karthik-weds-meenakshi.netlify.app/"
+        data-name="Karthik & Meenakshi" data-theme="Authentic South Indian">
         <div class="card-media">
-          <img src="assets/covers/karthik_meenakshi.jpg" alt="Karthik & Meenakshi Preview" loading="lazy" class="card-img">
+          <img src="assets/covers/karthik_meenakshi.jpg" alt="Karthik & Meenakshi Preview" loading="lazy"
+            class="card-img">
           <span class="style-badge traditional">Traditional</span>
           <span class="template-code-badge">#014</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Karthik & Meenakshi">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -413,18 +715,27 @@
         <div class="card-info">
           <h3 class="card-title">Karthik & Meenakshi</h3>
           <p class="card-sub">Authentic South Indian</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 15. Aarav & Diya (South - Modern) [CODE: #015] -->
-      <article class="sample-card" data-category="south-indian" data-style="modern" data-code="015" data-order="15" data-url="https://aarav-weds-diya.vercel.app/" data-name="Aarav & Diya" data-theme="Modern South Indian">
+      <!-- 15. Aarav & Diya [CODE: #015] -->
+      <article class="sample-card" data-category="south-indian" data-style="modern" data-code="015" data-order="15"
+        data-url="https://aarav-weds-diya.vercel.app/" data-name="Aarav & Diya" data-theme="Modern South Indian">
         <div class="card-media">
           <img src="assets/covers/aarav_diya.jpg" alt="Aarav & Diya Preview" loading="lazy" class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#015</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Aarav & Diya">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -432,20 +743,28 @@
         <div class="card-info">
           <h3 class="card-title">Aarav & Diya</h3>
           <p class="card-sub">Modern South Indian</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- ==================== ISLAMIC COLLECTION ==================== -->
-
-      <!-- 16. Sahal & Ayesha (Islamic - Modern) [CODE: #016] -->
-      <article class="sample-card" data-category="islamic" data-style="modern" data-code="016" data-popular="true" data-order="16" data-url="https://sahal-weds-ayesha.vercel.app/" data-name="Sahal & Ayesha" data-theme="Modern Islamic Nikah">
+      <!-- 16. Sahal & Ayesha [CODE: #016] -->
+      <article class="sample-card" data-category="islamic" data-style="modern" data-code="016" data-popular="true"
+        data-order="16" data-url="https://sahal-weds-ayesha.vercel.app/" data-name="Sahal & Ayesha"
+        data-theme="Modern Islamic Nikah">
         <div class="card-media">
           <img src="assets/covers/sahal_ayesha.jpg" alt="Sahal & Ayesha Preview" loading="lazy" class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#016</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Sahal & Ayesha">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -453,18 +772,27 @@
         <div class="card-info">
           <h3 class="card-title">Sahal & Ayesha</h3>
           <p class="card-sub">Modern Islamic Nikah</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 17. Amira & Yusuf (Islamic - Royal) [CODE: #017] -->
-      <article class="sample-card" data-category="islamic" data-style="royal" data-code="017" data-order="17" data-url="https://amira-weds-yusuf-inv.vercel.app/" data-name="Amira & Yusuf" data-theme="Luxury Islamic Nikah">
+      <!-- 17. Amira & Yusuf [CODE: #017] -->
+      <article class="sample-card" data-category="islamic" data-style="royal" data-code="017" data-order="17"
+        data-url="https://amira-weds-yusuf-inv.vercel.app/" data-name="Amira & Yusuf" data-theme="Luxury Islamic Nikah">
         <div class="card-media">
           <img src="assets/covers/amira_yusuf.jpg" alt="Amira & Yusuf Preview" loading="lazy" class="card-img">
           <span class="style-badge royal">Royal</span>
           <span class="template-code-badge">#017</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Amira & Yusuf">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -472,18 +800,28 @@
         <div class="card-info">
           <h3 class="card-title">Amira & Yusuf</h3>
           <p class="card-sub">Luxury Islamic Nikah</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 18. Zohan & Rose (Islamic - Modern) [CODE: #018] -->
-      <article class="sample-card" data-category="islamic" data-style="modern" data-code="018" data-order="18" data-url="https://zohan-weds-rose.vercel.app/" data-name="Zohan & Rose" data-theme="Modern Islamic / Rose Theme">
+      <!-- 18. Zohan & Rose [CODE: #018] -->
+      <article class="sample-card" data-category="islamic" data-style="modern" data-code="018" data-order="18"
+        data-url="https://zohan-weds-rose.vercel.app/" data-name="Zohan & Rose"
+        data-theme="Modern Islamic / Rose Theme">
         <div class="card-media">
           <img src="assets/covers/zohan_rose.jpg" alt="Zohan & Rose Preview" loading="lazy" class="card-img">
           <span class="style-badge modern">Modern</span>
           <span class="template-code-badge">#018</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Zohan & Rose">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -491,20 +829,28 @@
         <div class="card-info">
           <h3 class="card-title">Zohan & Rose</h3>
           <p class="card-sub">Modern Islamic / Rose Theme</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- ==================== CHRISTIAN COLLECTION ==================== -->
-
-      <!-- 19. Catherine & James (Christian - Cinematic) [CODE: #019] -->
-      <article class="sample-card" data-category="christian" data-style="cinematic" data-code="019" data-new="true" data-order="19" data-url="https://premium-invcraftmedia.vercel.app/" data-name="Catherine & James" data-theme="A Christian Wedding (Cinematic)">
+      <!-- 19. Catherine & James [CODE: #019] -->
+      <article class="sample-card" data-category="christian" data-style="cinematic" data-code="019" data-new="true"
+        data-order="19" data-url="https://premium-invcraftmedia.vercel.app/" data-name="Catherine & James"
+        data-theme="A Christian Wedding (Cinematic)">
         <div class="card-media">
           <img src="assets/covers/catherine_james.jpg" alt="Catherine & James Preview" loading="lazy" class="card-img">
           <span class="style-badge cinematic">Cinematic</span>
           <span class="template-code-badge">#019</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Catherine & James">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -512,18 +858,27 @@
         <div class="card-info">
           <h3 class="card-title">Catherine & James</h3>
           <p class="card-sub">Christian Cinematic Wedding</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
-      <!-- 20. Alex & Jamie (Christian - Cinematic) [CODE: #020] -->
-      <article class="sample-card" data-category="christian" data-style="cinematic" data-code="020" data-order="20" data-url="https://alex-weds-jamie.vercel.app/" data-name="Alex & Jamie" data-theme="Luxury Christian Ceremony">
+      <!-- 20. Alex & Jamie [CODE: #020] -->
+      <article class="sample-card" data-category="christian" data-style="cinematic" data-code="020" data-order="20"
+        data-url="https://alex-weds-jamie.vercel.app/" data-name="Alex & Jamie" data-theme="Luxury Christian Ceremony">
         <div class="card-media">
           <img src="assets/covers/alex_jamie.jpg" alt="Alex & Jamie Preview" loading="lazy" class="card-img">
           <span class="style-badge cinematic">Cinematic</span>
           <span class="template-code-badge">#020</span>
           <div class="play-action-wrap">
             <button class="play-pill-btn" aria-label="Play Preview Alex & Jamie">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
               <span>Preview Demo</span>
             </button>
           </div>
@@ -531,38 +886,106 @@
         <div class="card-info">
           <h3 class="card-title">Alex & Jamie</h3>
           <p class="card-sub">Luxury Christian Ceremony</p>
+          <div class="card-price-action-row">
+            <div class="card-pricing">
+              <del class="card-mrp">₹3,499</del>
+              <strong class="card-price">₹999</strong>
+            </div>
+            </div>
         </div>
       </article>
 
     </div>
 
-    <!-- Clean, Non-Boxed 3-Step Process -->
-    <section class="minimal-steps-section">
-      <div class="steps-title-wrap">
-        <span class="steps-kicker">HOW IT WORKS</span>
-        <h2 class="steps-heading">Three Simple Steps</h2>
+    <!-- ======================================================================
+         4. COUPLE TESTIMONIALS SECTION
+         ====================================================================== -->
+    <section class="testimonials-section" id="testimonialsSection">
+      <div class="section-header-centered">
+        <span class="section-eyebrow">CLIENT STORIES</span>
+        <h2 class="section-main-title">Loved by Couples</h2>
       </div>
 
-      <div class="steps-row">
-        <div class="step-item">
-          <div class="step-num">01</div>
-          <div class="step-text-wrap">
-            <h4 class="step-label">Select Design Code</h4>
-            <p class="step-detail">Choose your preferred design code (#001 to #020) from our live mobile demos.</p>
+      <div class="testimonials-scroll">
+        <article class="testimonial-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"We previewed #001, entered our wedding details, and got our custom invite link with live
+            RSVP tracking immediately after payment."</p>
+          <div class="t-author">
+            <div>
+              <strong>Rohan & Kritika</strong>
+              <span>Udaipur</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Sharing our custom link on WhatsApp and checking confirmed guest headcounts in the RSVP
+            dashboard made planning effortless."</p>
+          <div class="t-author">
+            <div>
+              <strong>Simran & Harman</strong>
+              <span>Chandigarh</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Clean mobile experience, Google Maps integration, and instant link generation. Our guests
+            loved the interactive design."</p>
+          <div class="t-author">
+            <div>
+              <strong>Karthik & Divya</strong>
+              <span>Chennai</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. FREQUENTLY ASKED QUESTIONS (CLEAN ACCORDION)
+         ====================================================================== -->
+    <section class="faq-section" id="faqSection">
+      <div class="section-header-centered">
+        <span class="section-eyebrow">SUPPORT</span>
+        <h2 class="section-main-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-list" id="faqList">
+        <div class="faq-item active">
+          <button type="button" class="faq-question">
+            <span>How does the ordering flow work?</span>
+            <span class="faq-icon">−</span>
+          </button>
+          <div class="faq-answer">
+            <p>1. Preview any template live. 2. Tap <strong>Customize & Buy</strong> to enter your wedding details. 3.
+              Login and complete payment (<del>₹3,499</del> ₹999). 4. Your custom invitation link and RSVP Dashboard
+              unlock immediately.</p>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">02</div>
-          <div class="step-text-wrap">
-            <h4 class="step-label">Share Events & Photos</h4>
-            <p class="step-detail">Send dates, venue map, timing & couple photos.</p>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>When do I get access to the RSVP Dashboard?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Your personal RSVP Dashboard and custom wedding link are unlocked right after you log in and complete the
+              payment for your selected invitation.</p>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">03</div>
-          <div class="step-text-wrap">
-            <h4 class="step-label">Ready in 24h</h4>
-            <p class="step-detail">Receive your custom mobile link to share with guests.</p>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Can I update my venue or event timings later?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, once your invitation is active, you can edit your dates, timings, or venue details anytime from your
+              dashboard without changing your shared link.</p>
           </div>
         </div>
       </div>
@@ -570,47 +993,123 @@
 
   </main>
 
-  <!-- Clean Minimal Footer -->
-  <footer class="clean-footer">
-    <div class="footer-brand">SAMPLES</div>
-    <p class="footer-desc">Curated mobile wedding invitations for Hindu, Sikh, South Indian, Islamic & Christian weddings.</p>
-    <div class="footer-copyright">© 2026 SAMPLES. All rights reserved.</div>
+  <!-- ========================================================================
+       CLEAN PROFESSIONAL EDITORIAL FOOTER
+       ======================================================================== -->
+  <footer class="clean-editorial-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-wrap">
+          <div class="brand-logo-circle footer-logo-circle">
+            <svg class="logo-im-svg" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+              <circle cx="20" cy="20" r="19" fill="#111115" />
+              <text x="19" y="21.5" font-family="'Great Vibes', 'Alex Brush', cursive" font-size="15" fill="#ffffff" text-anchor="middle" dominant-baseline="central">IM</text>
+            </svg>
+          </div>
+          <div class="footer-brand-text">
+            <div class="footer-brand-name-row">
+              <span class="footer-brand-title">INVCRAFT</span>
+              <span class="footer-brand-media-pill">MEDIA</span>
+            </div>
+            <span class="footer-tagline">Premium Digital Wedding Invitations</span>
+          </div>
+        </div>
+        <p class="footer-summary">
+          Handcrafted interactive mobile wedding invitations with instant custom links and live guest RSVP tracking.
+        </p>
+      </div>
+
+      <div class="footer-nav-columns">
+        <div class="footer-nav-col">
+          <h5>Collections</h5>
+          <a href="#catalogSection" data-footer-filter="hindu">Hindu Invitations</a>
+          <a href="#catalogSection" data-footer-filter="sikh">Sikh & Punjabi</a>
+          <a href="#catalogSection" data-footer-filter="south-indian">South Indian</a>
+          <a href="#catalogSection" data-footer-filter="islamic">Islamic Nikah</a>
+          <a href="#catalogSection" data-footer-filter="christian">Christian Weddings</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>Quick Links</h5>
+          <a href="#catalogSection" id="footerCustomizeLink">Customize Invite</a>
+          <a href="#testimonialsSection">Client Reviews</a>
+          <a href="#faqSection">FAQs</a>
+          <a href="#" id="footerLoginLink">Client Login</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 InvCraftMedia. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#faqSection">Privacy</a>
+          <a href="#faqSection">Terms</a>
+          <a href="mailto:support@invcraftmedia.com">Support</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <!-- Bottom Mobile Navigation Bar (Quick Community Jump) -->
+
+
+  <!-- Bottom Mobile Navigation Bar -->
   <nav class="bottom-mobile-nav" id="bottomNav">
     <button class="nav-tab active" data-filter="all">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+      </svg>
       <span>All</span>
     </button>
     <button class="nav-tab" data-filter="hindu">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 6v6l4 2"></path>
+      </svg>
       <span>Hindu</span>
     </button>
     <button class="nav-tab" data-filter="sikh">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon
+          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+        </polygon>
+      </svg>
       <span>Sikh</span>
     </button>
     <button class="nav-tab" data-filter="south-indian">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 17l10 5 10-5"></path>
+        <path d="M2 12l10 5 10-5"></path>
+      </svg>
       <span>South</span>
     </button>
     <button class="nav-tab" data-filter="islamic">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+      </svg>
       <span>Islamic</span>
     </button>
     <button class="nav-tab" data-filter="christian">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M7 7h10"></path></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2v20M7 7h10"></path>
+      </svg>
       <span>Christian</span>
     </button>
   </nav>
 
-  <!-- In-App Fullscreen Mobile Preview Modal with Top Left Back Arrow -->
+  
+
+  <!-- ========================================================================
+       STEP 1: IN-APP FULLSCREEN MOBILE PREVIEW MODAL
+       (WITH CUT PRICE ₹3,499 -> ₹999 ONLY WHEN PURCHASING)
+       ======================================================================== -->
   <div class="preview-modal" id="previewModal" aria-hidden="true" role="dialog">
     <div class="modal-top-bar">
-      <!-- Top Left Back Arrow -->
       <button class="modal-back-btn" id="modalBackBtn" aria-label="Go back">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
@@ -620,12 +1119,12 @@
         <h4 class="modal-title" id="modalTitle">Wedding Sample</h4>
         <div class="modal-subtitle-wrap">
           <span class="pulse-dot-sm"></span>
-          <span>Live Interactive Mobile Preview</span>
+          <span id="modalSubtitleText">Live Interactive Mobile Preview</span>
         </div>
       </div>
 
-      <!-- Open in browser icon button -->
-      <a href="#" target="_blank" rel="noopener noreferrer" class="modal-external-link" id="modalExternalLink" title="Open full screen in browser">
+      <a href="#" target="_blank" rel="noopener noreferrer" class="modal-external-link" id="modalExternalLink"
+        title="Open full screen in browser">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
           <polyline points="15 3 21 3 21 9"></polyline>
@@ -634,22 +1133,343 @@
       </a>
     </div>
 
-    <!-- Live Preview Viewport -->
     <div class="modal-viewport">
       <div class="preview-loader" id="previewLoader">
         <div class="spinner"></div>
         <span>Loading Live Mobile Invite...</span>
       </div>
 
-      <div class="iframe-notice" id="iframeNotice">
-        <span>Previewing live mobile version</span>
-        <a href="#" target="_blank" id="fallbackLink" class="fallback-btn">Open Full Site ↗</a>
-      </div>
+      <iframe id="previewIframe" src="about:blank" title="Wedding Live Demo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
 
-      <iframe id="previewIframe" src="about:blank" title="Wedding Live Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <!-- Bottom Sticky Purchase Bar inside Preview Modal (₹3,499 Cut -> ₹999) -->
+    <div class="preview-sell-bar" id="previewSellBar">
+      <div class="sell-bar-info">
+        <span class="sell-bar-code" id="sellBarCode">DESIGN #001</span>
+        <div class="sell-bar-price-row">
+          <del class="sell-bar-mrp">₹3,499</del>
+          <strong class="sell-bar-price">₹999</strong>
+          <span class="sell-bar-off">71% OFF</span>
+        </div>
+      </div>
+      <button type="button" class="sell-bar-cta-btn" id="startCustomizeFromPreviewBtn">
+        <span>Customize & Buy</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <!-- Guest RSVP Action Bar (Shown when viewing a customized client invite link) -->
+    <div class="preview-sell-bar guest-rsvp-bar" id="guestInviteBar" style="display: none;">
+      <div class="sell-bar-info">
+        <span class="sell-bar-code" id="guestInviteCoupleLabel">COUPLE INVITATION</span>
+        <div class="sell-bar-price-row">
+          <span class="sell-bar-inc" id="guestInviteDateVenue">Wedding Date & Venue</span>
+        </div>
+      </div>
+      <button type="button" class="sell-bar-cta-btn guest-rsvp-trigger-btn" id="openGuestRsvpModalBtn">
+        <span>Submit Guest RSVP</span>
+      </button>
     </div>
   </div>
 
+  <!-- ========================================================================
+       STEP 2 -> STEP 3 -> STEP 4:
+       ENTER DETAILS -> LOGIN -> PAYMENT -> UNLOCK LINK & DASHBOARD AT THE END
+       ======================================================================== -->
+  
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="groomNameInput">Groom's Name *</label>
+            <input type="text" id="groomNameInput" class="form-control" placeholder="e.g. Rahul" required>
+          </div>
+          <div class="form-group">
+            <label for="brideNameInput">Bride's Name *</label>
+            <input type="text" id="brideNameInput" class="form-control" placeholder="e.g. Priya" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="weddingDateInput">Wedding Date *</label>
+            <input type="date" id="weddingDateInput" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="weddingTimeInput">Time *</label>
+            <input type="text" id="weddingTimeInput" class="form-control" placeholder="e.g. 7:30 PM"
+              value="7:30 PM Onwards" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="venueNameInput">Venue & City *</label>
+          <input type="text" id="venueNameInput" class="form-control" placeholder="e.g. Taj Lake Palace, Udaipur"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="venueMapInput">Google Maps Link (Optional)</label>
+          <input type="url" id="venueMapInput" class="form-control" placeholder="https://maps.google.com/...">
+        </div>
+
+        <div class="form-group">
+          <label for="eventsListInput">Events Included</label>
+          <textarea id="eventsListInput" class="form-control"
+            rows="2">Haldi & Mehendi • Sangeet • Wedding & Reception</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="hostPhoneInput">WhatsApp Number *</label>
+          <input type="tel" id="hostPhoneInput" class="form-control" placeholder="e.g. 8209415303" required>
+        </div>
+
+        <button type="submit" class="wizard-primary-btn">
+          <span>Continue to Login</span>
+          <span>→</span>
+        </button>
+      </form>
+
+      <!-- STEP 2: ACCOUNT LOGIN -->
+      <form class="wizard-pane" id="wizardStep2Form">
+        <div class="pro-login-card">
+          <div class="pro-login-head">
+            <div>
+              <strong>Login to Save Your Invitation</strong>
+              <p>Your custom invite link and RSVP dashboard will unlock under this account after payment.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="authNameInput">Your Full Name *</label>
+            <input type="text" id="authNameInput" class="form-control" placeholder="e.g. Rahul & Priya" required>
+          </div>
+
+          <div class="form-group">
+            <label for="authEmailInput">Mobile Number or Email *</label>
+            <input type="text" id="authEmailInput" class="form-control" placeholder="e.g. 8209415303" required>
+          </div>
+
+          <div class="form-group">
+            <label for="authPassInput">Create 4-Digit PIN / Password *</label>
+            <input type="password" id="authPassInput" class="form-control" placeholder="Enter 4-digit PIN" value="1234"
+              required>
+          </div>
+        </div>
+
+        <div class="wizard-btn-row">
+          <button type="button" class="wizard-back-btn" id="backToStep1Btn">← Back</button>
+          <button type="submit" class="wizard-primary-btn">Login & Proceed to Payment →</button>
+        </div>
+      </form>
+
+      <!-- STEP 3: PAYMENT CHECKOUT (₹3,499 CUT -> ₹999) -->
+      <div class="wizard-pane" id="wizardStep3Pane">
+        <div class="payment-summary-card">
+          <div class="pay-row">
+            <span>Selected Invitation</span>
+            <strong id="paySummaryTemplate">#001 - Royal Hindu</strong>
+          </div>
+          <div class="pay-row">
+            <span>Couple Name</span>
+            <strong id="paySummaryCouple">Rahul Weds Priya</strong>
+          </div>
+          <div class="pay-row">
+            <span>Date & Venue</span>
+            <strong id="paySummaryVenue">18 Dec 2026 • Udaipur</strong>
+          </div>
+          <div class="pay-row">
+            <span>Regular Price</span>
+            <del class="pay-mrp-strike">₹3,499</del>
+          </div>
+          <div class="pay-row">
+            <span>Offer Price (71% OFF)</span>
+            <strong class="free-tag">₹999</strong>
+          </div>
+          <div class="pay-divider"></div>
+          <div class="pay-row total">
+            <span>Total Payable</span>
+            <div class="pay-total-wrap">
+              <del class="pay-mrp-sm">₹3,499</del>
+              <strong class="pay-total-amount">₹999</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-methods-label">Select Payment Method</div>
+        <div class="payment-methods-grid">
+          <label class="pay-method-option active">
+            <input type="radio" name="payMethod" value="UPI" checked>
+            <span class="pay-method-title">UPI (GPay / PhonePe / Paytm)</span>
+            <span class="pay-method-sub">Instant</span>
+          </label>
+          <label class="pay-method-option">
+            <input type="radio" name="payMethod" value="Card">
+            <span class="pay-method-title">Credit / Debit Card</span>
+            <span class="pay-method-sub">Visa, RuPay, MasterCard</span>
+          </label>
+          <label class="pay-method-option">
+            <input type="radio" name="payMethod" value="NetBanking">
+            <span class="pay-method-title">NetBanking</span>
+            <span class="pay-method-sub">All Banks</span>
+          </label>
+        </div>
+
+        <div class="wizard-btn-row">
+          <button type="button" class="wizard-back-btn" id="backToStep2Btn">← Back</button>
+          <button type="button" class="wizard-primary-btn pay-now-btn" id="completePaymentBtn">
+            <span>Pay ₹999 & Unlock Dashboard →</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: PAYMENT COMPLETE -> LINK + OPEN DASHBOARD -->
+      <div class="wizard-pane" id="wizardStep4Pane">
+        <div class="success-celebration-box">
+          <div class="success-check-circle">✓</div>
+          <h4 class="success-title">Order Confirmed! Your Invite Link & Dashboard are Ready</h4>
+          <p class="success-desc">Here is the custom link for the invitation you added. Share it with guests and track
+            all RSVPs in your dashboard.</p>
+
+          <div class="generated-link-box">
+            <span class="link-kicker">YOUR CUSTOM WEDDING INVITATION LINK</span>
+            <div class="link-copy-row">
+              <input type="text" id="generatedInviteLinkInput" class="generated-link-input" readonly
+                value="http://localhost:8080/?invite=rahul-weds-priya">
+              <button type="button" class="copy-link-btn" id="copyGeneratedLinkBtn">Copy Link</button>
+            </div>
+          </div>
+
+          <div class="success-actions-grid">
+            <button type="button" class="btn-outline-action" id="previewMyCustomInviteBtn">
+              Open My Invite Link
+            </button>
+            <a href="#" target="_blank" id="whatsappShareInviteBtn" class="btn-whatsapp-action">
+              Share on WhatsApp
+            </a>
+          </div>
+
+          <button type="button" class="wizard-primary-btn open-dash-final-btn" id="goToDashboardAfterPayBtn">
+            <span>Go to My RSVP Dashboard</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       STEP 5 (LAST MEIN): COUPLE RSVP DASHBOARD & CUSTOM INVITE LINK
+       (Unlocked After Login & Payment)
+       ======================================================================== -->
+  
+
+        <div class="rsvp-stats-grid">
+          <div class="rsvp-stat-box">
+            <span class="stat-label">Total RSVPs</span>
+            <strong class="stat-value" id="statTotalRsvps">4</strong>
+          </div>
+          <div class="rsvp-stat-box attending">
+            <span class="stat-label">Attending</span>
+            <strong class="stat-value" id="statAttendingCount">3</strong>
+          </div>
+          <div class="rsvp-stat-box guests">
+            <span class="stat-label">Total Guests</span>
+            <strong class="stat-value" id="statTotalGuests">9</strong>
+          </div>
+          <div class="rsvp-stat-box declined">
+            <span class="stat-label">Declined</span>
+            <strong class="stat-value" id="statDeclinedCount">1</strong>
+          </div>
+        </div>
+
+        <div class="rsvp-list-header">
+          <div class="rsvp-filter-tabs">
+            <button type="button" class="rsvp-tab active" data-rsvp-filter="all">All</button>
+            <button type="button" class="rsvp-tab" data-rsvp-filter="yes">Attending</button>
+            <button type="button" class="rsvp-tab" data-rsvp-filter="no">Declined</button>
+          </div>
+          <div class="rsvp-header-actions">
+            <button type="button" class="add-test-rsvp-btn" id="openGuestRsvpFromDashBtn">+ Test Guest RSVP</button>
+            <button type="button" class="export-csv-btn" id="exportRsvpCsvBtn">Export CSV</button>
+          </div>
+        </div>
+
+        <div class="rsvp-guest-list" id="rsvpGuestList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GUEST RSVP SUBMISSION MODAL
+       ======================================================================== -->
+  <div class="flow-modal-overlay" id="guestRsvpModal" aria-hidden="true">
+    <div class="flow-modal-sheet guest-rsvp-sheet">
+      <div class="flow-modal-header">
+        <div>
+          <span class="flow-template-pill">GUEST RSVP</span>
+          <h3 class="flow-modal-title" id="guestRsvpModalTitle">Confirm Your Attendance</h3>
+        </div>
+        <button type="button" class="flow-close-btn" id="closeGuestRsvpModalBtn" aria-label="Close">✕</button>
+      </div>
+
+      <form class="wizard-pane active" id="guestRsvpForm">
+        <div class="form-group">
+          <label for="guestNameInput">Your Full Name *</label>
+          <input type="text" id="guestNameInput" class="form-control" placeholder="e.g. Vikram Mehta & Family" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="guestPhoneInput">Mobile Number *</label>
+            <input type="tel" id="guestPhoneInput" class="form-control" placeholder="e.g. 9811223344" required>
+          </div>
+          <div class="form-group">
+            <label for="guestSideSelect">Guest Side</label>
+            <select id="guestSideSelect" class="form-control">
+              <option value="Groom's Side">Groom's Side</option>
+              <option value="Bride's Side">Bride's Side</option>
+              <option value="Both">Both Families</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="guestAttendingSelect">Will You Attend? *</label>
+            <select id="guestAttendingSelect" class="form-control">
+              <option value="yes">Yes, Attending</option>
+              <option value="no">Unable to Attend</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="guestCountInput">Number of Guests *</label>
+            <select id="guestCountInput" class="form-control">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5+ Guests</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guestMessageInput">Wishes for the Couple</label>
+          <input type="text" id="guestMessageInput" class="form-control" placeholder="Best wishes!">
+        </div>
+
+        <button type="submit" class="wizard-primary-btn">
+          <span>Submit RSVP</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  
+
   <script src="app.js"></script>
 </body>
+
 </html>

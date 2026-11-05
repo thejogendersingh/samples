@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap');
+      .cursive-im {
+        font-family: 'Great Vibes', 'Alex Brush', cursive;
+        font-size: 34px;
+        fill: #ffffff;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+    </style>
+  </defs>
+
+  <!-- Clean Minimal Dark Circle -->
+  <circle cx="50" cy="50" r="48" fill="#111115" />
+
+  <!-- Perfectly Centered Balanced Cursive IM Monogram -->
+  <text x="49" y="52" class="cursive-im">IM</text>
+</svg>

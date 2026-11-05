@@ -1,348 +1,372 @@
 // ==========================================================================
-// SAMPLES App Logic: Modal Preview, Search, Mixed Categories & Sorting
+// INVCRAFTMEDIA - Streamlined Client Experience Logic
+// 1. Direct-to-WhatsApp Flow (Custom pre-filled order messages)
+// 2. Interactive Mobile Fullscreen Preview Modal (#previewModal)
+// 3. Category Filter Tabs & Realtime Search
+// 4. Floating WhatsApp CTA & Drawer Menu
+// 5. Interactive FAQ Accordion
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
+  // --------------------------------------------------------------------------
+  // Configuration: WhatsApp Phone Number (Direct Orders & Customization)
+  // --------------------------------------------------------------------------
+  const WHATSAPP_PHONE = '918209415303';
+
+  // --------------------------------------------------------------------------
+  // DOM Elements
+  // --------------------------------------------------------------------------
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+  const navDrawerBackdrop = document.getElementById('navDrawerBackdrop');
+  const menuIconBars = mobileMenuBtn ? mobileMenuBtn.querySelector('.menu-icon-bars') : null;
+  const menuIconClose = mobileMenuBtn ? mobileMenuBtn.querySelector('.menu-icon-close') : null;
+
+  // Preview Modal
   const previewModal = document.getElementById('previewModal');
   const modalBackBtn = document.getElementById('modalBackBtn');
   const previewIframe = document.getElementById('previewIframe');
   const previewLoader = document.getElementById('previewLoader');
   const modalTitle = document.getElementById('modalTitle');
+  const modalSubtitleText = document.getElementById('modalSubtitleText');
   const modalExternalLink = document.getElementById('modalExternalLink');
-  const fallbackLink = document.getElementById('fallbackLink');
+  const previewSellBar = document.getElementById('previewSellBar');
+  const sellBarCode = document.getElementById('sellBarCode');
+  const previewWhatsappBtn = document.getElementById('previewWhatsappBtn');
 
+  // Search & Filtering
   const searchInput = document.getElementById('searchInput');
   const searchClearBtn = document.getElementById('searchClearBtn');
   const emptySearchState = document.getElementById('emptySearchState');
   const emptyDesc = document.getElementById('emptyDesc');
   const emptyResetBtn = document.getElementById('emptyResetBtn');
   const samplesGrid = document.getElementById('samplesGrid');
-
-  const sampleCards = Array.from(document.querySelectorAll('.sample-card'));
-  const categoryChips = document.querySelectorAll('.cat-chip');
-  const bottomTabs = document.querySelectorAll('.bottom-mobile-nav .nav-tab');
+  const sampleCards = document.querySelectorAll('.sample-card');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const bottomNavTabs = document.querySelectorAll('.bottom-mobile-nav .nav-tab');
+  const sortSelect = document.getElementById('sortSelect');
   const activeStyleLabel = document.getElementById('activeStyleLabel');
   const activeCount = document.getElementById('activeCount');
 
-  // Sort Elements
-  const sortFilterBtn = document.getElementById('sortFilterBtn');
-  const sortDropdownMenu = document.getElementById('sortDropdownMenu');
-  const sortLabel = document.getElementById('sortLabel');
-  const sortOptions = document.querySelectorAll('.sort-option');
-
-  let currentFilter = 'all';
-  let currentSort = 'recommended';
+  // --------------------------------------------------------------------------
+  // Configure WhatsApp Links
+  // --------------------------------------------------------------------------
+  const drawerWaBtn = document.querySelector('.drawer-wa-btn');
+  if (drawerWaBtn) {
+    const defaultMsg = 'Hello InvCraftMedia! I want to explore wedding invitation designs.';
+    drawerWaBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(defaultMsg)}`;
+  }
 
   // --------------------------------------------------------------------------
-  // Apply Unified Filters & Sorting (Mixed Categories + Search + Sort)
+  // Mobile Nav Drawer Toggle
   // --------------------------------------------------------------------------
-  function applyFiltersAndSort() {
-    let visibleCount = 0;
-    const rawQuery = searchInput.value.trim().toLowerCase();
-    const query = rawQuery.replace(/^#/, '');
+  let isMenuOpen = false;
 
-    // Toggle clear button icon
-    if (rawQuery.length > 0) {
-      searchClearBtn.classList.add('active');
-    } else {
-      searchClearBtn.classList.remove('active');
+  function setHamburgerMenuState(open) {
+    isMenuOpen = open;
+    if (mobileNavDrawer) {
+      mobileNavDrawer.classList.toggle('active', open);
+      mobileNavDrawer.setAttribute('aria-hidden', (!open).toString());
     }
-
-    // 1. Filter cards
-    sampleCards.forEach(card => {
-      const cardCategory = card.getAttribute('data-category') || '';
-      const cardStyle = card.getAttribute('data-style') || '';
-      const cardCode = card.getAttribute('data-code') || '';
-      const cardName = (card.getAttribute('data-name') || '').toLowerCase();
-      const cardTheme = (card.getAttribute('data-theme') || '').toLowerCase();
-
-      // Mixed Filter matches either Community or Style!
-      const matchesFilter = (currentFilter === 'all' || 
-                             cardCategory === currentFilter || 
-                             cardStyle === currentFilter);
-
-      const matchesSearch = (!query || 
-                             cardName.includes(query) || 
-                             cardTheme.includes(query) || 
-                             cardCategory.includes(query) ||
-                             cardStyle.includes(query) ||
-                             cardCode.includes(query) ||
-                             (`code ${cardCode}`).includes(query));
-
-      if (matchesFilter && matchesSearch) {
-        card.style.display = 'flex';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    // 2. Sort cards
-    const visibleCards = sampleCards.filter(card => card.style.display !== 'none');
-    
-    visibleCards.sort((a, b) => {
-      const codeA = parseInt(a.getAttribute('data-code') || '999', 10);
-      const codeB = parseInt(b.getAttribute('data-code') || '999', 10);
-      const orderA = parseInt(a.getAttribute('data-order') || '999', 10);
-      const orderB = parseInt(b.getAttribute('data-order') || '999', 10);
-      const isNewA = a.getAttribute('data-new') === 'true' ? 1 : 0;
-      const isNewB = b.getAttribute('data-new') === 'true' ? 1 : 0;
-      const isPopA = a.getAttribute('data-popular') === 'true' ? 1 : 0;
-      const isPopB = b.getAttribute('data-popular') === 'true' ? 1 : 0;
-      const nameA = a.getAttribute('data-name') || '';
-      const nameB = b.getAttribute('data-name') || '';
-
-      if (currentSort === 'code-asc') {
-        return codeA - codeB;
-      } else if (currentSort === 'name-asc') {
-        return nameA.localeCompare(nameB);
-      } else if (currentSort === 'popular') {
-        return isPopB - isPopA || orderA - orderB;
-      } else if (currentSort === 'newest') {
-        return isNewB - isNewA || orderA - orderB;
-      } else {
-        return orderA - orderB;
-      }
-    });
-
-    // Re-append in sorted order
-    visibleCards.forEach(card => samplesGrid.appendChild(card));
-
-    // Handle Empty State
-    if (visibleCount === 0) {
-      emptySearchState.style.display = 'block';
-      emptyDesc.textContent = rawQuery
-        ? `No invitations found for "${searchInput.value.trim()}".`
-        : 'No invitations match the selected category.';
-      samplesGrid.style.display = 'none';
-    } else {
-      emptySearchState.style.display = 'none';
-      samplesGrid.style.display = 'grid';
+    if (navDrawerBackdrop) {
+      navDrawerBackdrop.classList.toggle('active', open);
     }
-
-    // Update Counter & Active Label
-    if (rawQuery) {
-      activeStyleLabel.textContent = `Search: "${searchInput.value.trim()}"`;
-      activeCount.textContent = `${visibleCount} Found`;
-    } else {
-      const labelMap = {
-        'all': 'All Invitations',
-        'hindu': 'Hindu Collection',
-        'sikh': 'Sikh & Punjabi',
-        'south-indian': 'South Indian',
-        'islamic': 'Islamic Collection',
-        'christian': 'Christian Collection',
-        'royal': 'Royal Designs',
-        'modern': 'Modern Designs',
-        'cinematic': 'Cinematic Designs',
-        'traditional': 'Traditional Designs'
-      };
-
-      activeStyleLabel.textContent = labelMap[currentFilter] || `${currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1)} Collection`;
-      activeCount.textContent = `${visibleCount} Designs`;
+    if (mobileMenuBtn) {
+      mobileMenuBtn.setAttribute('aria-expanded', open.toString());
+      if (menuIconBars && menuIconClose) {
+        menuIconBars.style.display = open ? 'none' : 'block';
+        menuIconClose.style.display = open ? 'block' : 'none';
+      }
     }
   }
 
-  // Live Search Input Event
-  searchInput.addEventListener('input', () => {
-    applyFiltersAndSort();
-  });
-
-  // Clear Search Button Event
-  searchClearBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    searchInput.focus();
-    applyFiltersAndSort();
-  });
-
-  // Reset Empty State Event
-  emptyResetBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    currentFilter = 'all';
-    currentSort = 'recommended';
-    syncCategoryUI('all');
-    syncSortUI('recommended');
-    applyFiltersAndSort();
-  });
-
-  // --------------------------------------------------------------------------
-  // Category Selection (Mixed Row)
-  // --------------------------------------------------------------------------
-  function setFilter(filterVal) {
-    currentFilter = filterVal;
-    syncCategoryUI(filterVal);
-    applyFiltersAndSort();
-  }
-
-  function syncCategoryUI(filterVal) {
-    categoryChips.forEach(chip => {
-      if (chip.getAttribute('data-filter') === filterVal) {
-        chip.classList.add('active');
-        chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      } else {
-        chip.classList.remove('active');
-      }
-    });
-
-    bottomTabs.forEach(tab => {
-      if (tab.getAttribute('data-filter') === filterVal) {
-        tab.classList.add('active');
-      } else {
-        tab.classList.remove('active');
-      }
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setHamburgerMenuState(!isMenuOpen);
     });
   }
 
-  categoryChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const val = chip.getAttribute('data-filter');
-      setFilter(val);
-    });
-  });
-
-  bottomTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const val = tab.getAttribute('data-filter');
-      setFilter(val);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-
-  // --------------------------------------------------------------------------
-  // Right-Side Sort Dropdown Logic
-  // --------------------------------------------------------------------------
-  function toggleSortDropdown(forceState) {
-    const isExpanded = forceState !== undefined ? forceState : sortFilterBtn.getAttribute('aria-expanded') !== 'true';
-    sortFilterBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-    if (isExpanded) {
-      sortDropdownMenu.classList.add('active');
-    } else {
-      sortDropdownMenu.classList.remove('active');
-    }
+  if (navDrawerBackdrop) {
+    navDrawerBackdrop.addEventListener('click', () => setHamburgerMenuState(false));
   }
 
-  sortFilterBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleSortDropdown();
+  document.querySelectorAll('[data-close-drawer]').forEach(item => {
+    item.addEventListener('click', () => setHamburgerMenuState(false));
   });
 
-  document.addEventListener('click', (e) => {
-    if (!sortFilterBtn.contains(e.target) && !sortDropdownMenu.contains(e.target)) {
-      toggleSortDropdown(false);
-    }
-  });
-
-  function syncSortUI(sortValue) {
-    const sortTitles = {
-      'recommended': 'Recommended',
-      'popular': 'Most Popular',
-      'newest': 'Newest Added',
-      'code-asc': 'Code: 001-020',
-      'name-asc': 'Name: A to Z'
+  // --------------------------------------------------------------------------
+  // Card Data Extraction Helper
+  // --------------------------------------------------------------------------
+  function extractCardData(card) {
+    return {
+      code: card.getAttribute('data-code') || '001',
+      name: card.getAttribute('data-name') || card.querySelector('.card-title')?.textContent.trim() || 'Wedding Sample',
+      theme: card.getAttribute('data-theme') || card.querySelector('.card-sub')?.textContent.trim() || 'Digital Wedding Invite',
+      category: card.getAttribute('data-category') || 'hindu',
+      url: card.getAttribute('data-url') || '',
+      cover: card.querySelector('.card-img')?.getAttribute('src') || ''
     };
-
-    sortLabel.textContent = sortTitles[sortValue] || 'Sort';
-
-    sortOptions.forEach(opt => {
-      if (opt.getAttribute('data-sort') === sortValue) {
-        opt.classList.add('active');
-      } else {
-        opt.classList.remove('active');
-      }
-    });
   }
 
-  sortOptions.forEach(opt => {
-    opt.addEventListener('click', () => {
-      const sortVal = opt.getAttribute('data-sort');
-      currentSort = sortVal;
-      syncSortUI(sortVal);
-      toggleSortDropdown(false);
-      applyFiltersAndSort();
-    });
-  });
-
   // --------------------------------------------------------------------------
-  // In-App Fullscreen Modal Preview
+  // Live Mobile Preview Modal
   // --------------------------------------------------------------------------
-  function openPreview(card) {
-    const url = card.getAttribute('data-url');
-    const name = card.getAttribute('data-name');
-    const code = card.getAttribute('data-code');
+  function openPreview(data) {
+    if (!data || !data.url) return;
 
-    if (!url) return;
+    if (modalTitle) modalTitle.textContent = data.name;
+    if (modalSubtitleText) modalSubtitleText.textContent = data.theme;
+    if (modalExternalLink) modalExternalLink.href = data.url;
+    if (sellBarCode) sellBarCode.textContent = `DESIGN #${data.code}`;
 
-    modalTitle.textContent = code ? `${name} (#${code})` : (name || 'Wedding Invite');
-    modalExternalLink.href = url;
-    fallbackLink.href = url;
+    // WhatsApp Message
+    if (previewWhatsappBtn) {
+      const msg = `Hello InvCraftMedia! I want to customize this wedding invitation:
+📌 Design #${data.code} - ${data.name}
+🎨 Theme: ${data.theme}
+💰 Offer Price: ₹999 (Regular ₹3,499)
+🔗 Live Demo: ${data.url}
 
-    previewLoader.classList.remove('hidden');
+Please share how to add my wedding details!`;
+      previewWhatsappBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+    }
+
+    if (previewLoader) previewLoader.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 
-    previewModal.classList.add('active');
-    previewModal.setAttribute('aria-hidden', 'false');
+    if (previewModal) {
+      previewModal.classList.add('active');
+      previewModal.setAttribute('aria-hidden', 'false');
+    }
 
-    previewIframe.src = url;
-
-    const hideLoader = () => {
-      previewLoader.classList.add('hidden');
-      previewIframe.removeEventListener('load', hideLoader);
-    };
-
-    previewIframe.addEventListener('load', hideLoader);
-    setTimeout(hideLoader, 3500);
-
-    window.history.pushState({ modalOpen: true }, '');
+    if (previewIframe) {
+      previewIframe.src = data.url;
+      const hideLoader = () => {
+        if (previewLoader) previewLoader.classList.add('hidden');
+        previewIframe.removeEventListener('load', hideLoader);
+      };
+      previewIframe.addEventListener('load', hideLoader);
+      setTimeout(hideLoader, 3000);
+    }
   }
 
-  function closePreview(popState = false) {
-    if (!previewModal.classList.contains('active')) return;
-
+  function closePreview() {
+    if (!previewModal || !previewModal.classList.contains('active')) return;
     previewModal.classList.remove('active');
     previewModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-
     setTimeout(() => {
-      previewIframe.src = 'about:blank';
-      previewLoader.classList.remove('hidden');
+      if (previewIframe) previewIframe.src = 'about:blank';
+      if (previewLoader) previewLoader.classList.remove('hidden');
     }, 200);
-
-    if (!popState && window.history.state && window.history.state.modalOpen) {
-      window.history.back();
-    }
   }
 
-  // Card click triggers
+  if (modalBackBtn) {
+    modalBackBtn.addEventListener('click', closePreview);
+  }
+
+  // Attach preview triggers to cards
   sampleCards.forEach(card => {
+    const data = extractCardData(card);
+
     card.addEventListener('click', () => {
-      openPreview(card);
+      openPreview(data);
     });
 
     const playBtn = card.querySelector('.play-pill-btn');
     if (playBtn) {
       playBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        openPreview(card);
+        openPreview(data);
       });
     }
   });
 
-  // Back arrow click
-  modalBackBtn.addEventListener('click', () => {
-    closePreview();
+  // --------------------------------------------------------------------------
+  // Search & Filtering Engine
+  // --------------------------------------------------------------------------
+  let currentCategory = 'all';
+  let currentSearchQuery = '';
+
+  function applyFilters() {
+    let visibleCount = 0;
+    const query = currentSearchQuery.trim().toLowerCase();
+
+    sampleCards.forEach(card => {
+      const cardCategory = (card.getAttribute('data-category') || '').toLowerCase();
+      const cardName = (card.getAttribute('data-name') || '').toLowerCase();
+      const cardTheme = (card.getAttribute('data-theme') || '').toLowerCase();
+      const cardCode = (card.getAttribute('data-code') || '').toLowerCase();
+
+      const matchesCat = (currentCategory === 'all' || cardCategory === currentCategory);
+      const matchesSearch = !query || 
+        cardName.includes(query) || 
+        cardTheme.includes(query) || 
+        cardCode.includes(query) ||
+        `#${cardCode}`.includes(query);
+
+      if (matchesCat && matchesSearch) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (activeCount) {
+      activeCount.textContent = `Showing ${visibleCount} invitation${visibleCount === 1 ? '' : 's'}`;
+    }
+
+    if (emptySearchState) {
+      if (visibleCount === 0) {
+        emptySearchState.style.display = 'block';
+        if (emptyDesc) {
+          emptyDesc.textContent = query
+            ? `No templates matching "${query}" in this category.`
+            : 'No invitations found for the selected category.';
+        }
+      } else {
+        emptySearchState.style.display = 'none';
+      }
+    }
+  }
+
+  // Filter Pills (Catalog Header)
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentCategory = pill.getAttribute('data-filter') || 'all';
+
+      // Sync Bottom Nav tabs
+      bottomNavTabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-filter') === currentCategory);
+      });
+
+      if (activeStyleLabel) {
+        activeStyleLabel.textContent = currentCategory === 'all' ? 'All Collections' : pill.textContent.trim();
+      }
+
+      applyFilters();
+    });
   });
 
-  // Hardware Back Button
-  window.addEventListener('popstate', () => {
-    if (previewModal.classList.contains('active')) {
-      closePreview(true);
+  // Bottom Mobile Nav Tabs
+  bottomNavTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      bottomNavTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentCategory = tab.getAttribute('data-filter') || 'all';
+
+      // Sync Catalog Filter Pills
+      filterPills.forEach(p => {
+        p.classList.toggle('active', p.getAttribute('data-filter') === currentCategory);
+      });
+
+      if (activeStyleLabel) {
+        activeStyleLabel.textContent = currentCategory === 'all' ? 'All Collections' : tab.querySelector('.nav-label')?.textContent.trim() || currentCategory;
+      }
+
+      applyFilters();
+
+      // Smooth scroll to catalog
+      const catalog = document.getElementById('catalogSection');
+      if (catalog) {
+        catalog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Search Input Handlers
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearchQuery = e.target.value;
+      if (searchClearBtn) {
+        searchClearBtn.classList.toggle('visible', currentSearchQuery.length > 0);
+      }
+      applyFilters();
+    });
+  }
+
+  if (searchClearBtn) {
+    searchClearBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      currentSearchQuery = '';
+      searchClearBtn.classList.remove('visible');
+      applyFilters();
+      if (searchInput) searchInput.focus();
+    });
+  }
+
+  if (emptyResetBtn) {
+    emptyResetBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      currentSearchQuery = '';
+      if (searchClearBtn) searchClearBtn.classList.remove('visible');
+
+      currentCategory = 'all';
+      filterPills.forEach(p => p.classList.toggle('active', p.getAttribute('data-filter') === 'all'));
+      bottomNavTabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-filter') === 'all'));
+      if (activeStyleLabel) activeStyleLabel.textContent = 'All Collections';
+
+      applyFilters();
+    });
+  }
+
+  // Sort Dropdown
+  if (sortSelect && samplesGrid) {
+    sortSelect.addEventListener('change', () => {
+      const val = sortSelect.value;
+      const cardsArr = Array.from(sampleCards);
+
+      cardsArr.sort((a, b) => {
+        const orderA = parseInt(a.getAttribute('data-order') || '0', 10);
+        const orderB = parseInt(b.getAttribute('data-order') || '0', 10);
+        const isPopA = a.hasAttribute('data-popular') ? 1 : 0;
+        const isPopB = b.hasAttribute('data-popular') ? 1 : 0;
+        const isNewA = a.hasAttribute('data-new') ? 1 : 0;
+        const isNewB = b.hasAttribute('data-new') ? 1 : 0;
+
+        if (val === 'popular') return isPopB - isPopA || orderA - orderB;
+        if (val === 'newest') return isNewB - isNewA || orderB - orderA;
+        return orderA - orderB;
+      });
+
+      cardsArr.forEach(card => samplesGrid.appendChild(card));
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // Interactive FAQ Accordion
+  // --------------------------------------------------------------------------
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    if (questionBtn) {
+      questionBtn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        // Close other items
+        faqItems.forEach(other => {
+          if (other !== item) {
+            other.classList.remove('active');
+            const btn = other.querySelector('.faq-question');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+        // Toggle current
+        item.classList.toggle('active', !isOpen);
+        questionBtn.setAttribute('aria-expanded', (!isOpen).toString());
+      });
     }
   });
 
-  // Escape key
+  // --------------------------------------------------------------------------
+  // Keyboard Escape
+  // --------------------------------------------------------------------------
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && previewModal.classList.contains('active')) {
+    if (e.key === 'Escape') {
+      setHamburgerMenuState(false);
       closePreview();
     }
   });
